@@ -281,13 +281,28 @@
 
     /* ── Banner ── */
 
+    @keyframes kenBurns {
+      0%   { transform: scale(1.0)  translate(0%,    0%);   }
+      25%  { transform: scale(1.06) translate(-1.5%, 0.5%); }
+      50%  { transform: scale(1.09) translate(0.5%,  -1%);  }
+      75%  { transform: scale(1.05) translate(1.5%,  0.8%); }
+      100% { transform: scale(1.0)  translate(0%,    0%);   }
+    }
+
+    @keyframes bannerFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
     .banner {
       position: relative;
       width: 100vw;
-      height: clamp(180px, 28vw, 320px);
-      margin-top: 3.5rem;
+      height: clamp(220px, 32vw, 380px);
+      margin-top: 3rem;
       overflow: hidden;
-      animation: fadeUp 0.9s ease both 1.3s;
+      animation: bannerFadeIn 1.2s ease both 1.2s;
+      border-top: 1px solid rgba(122, 92, 32, 0.25);
+      border-bottom: 1px solid rgba(122, 92, 32, 0.25);
     }
 
     .banner img {
@@ -296,20 +311,20 @@
       object-fit: cover;
       object-position: center 30%;
       display: block;
-      filter: sepia(0.2) brightness(0.92);
+      filter: sepia(0.15) brightness(0.96) contrast(1.05);
+      animation: kenBurns 22s ease-in-out infinite;
+      transform-origin: center center;
+      will-change: transform;
     }
 
+    /* Very subtle edge vignette — doesn't eat the image */
     .banner::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        var(--bg) 0%,
-        transparent 30%,
-        transparent 70%,
-        var(--bg-warm) 100%
-      );
+      background:
+        linear-gradient(to bottom,  rgba(240,233,216,0.35) 0%, transparent 18%, transparent 82%, rgba(232,223,200,0.35) 100%),
+        linear-gradient(to right,   rgba(240,233,216,0.2)  0%, transparent 12%, transparent 88%, rgba(240,233,216,0.2)  100%);
       z-index: 1;
       pointer-events: none;
     }
