@@ -33,7 +33,7 @@
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-11px); }
+      50%       { transform: translateY(-5px); }
     }
 
     @keyframes ringPulse {
@@ -69,19 +69,20 @@
 
     /* ── Base ── */
 
-    html, body { height: 100%; }
+    html { height: 100%; }
+    body { min-height: 100%; }
 
     body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       background-color: var(--bg);
       font-family: 'Cormorant Garamond', serif;
       color: var(--ink);
       text-align: center;
-      padding: 3.5rem 2rem 5rem;
+      padding: 4rem 2rem 4rem;
       overflow-x: hidden;
     }
 
@@ -145,7 +146,7 @@
 
     .title {
       font-family: 'Playfair Display SC', serif;
-      font-size: clamp(2.8rem, 7.5vw, 5.2rem);
+      font-size: clamp(3.4rem, 9vw, 6.2rem);
       font-weight: 900;
       letter-spacing: 0.16em;
       color: var(--ink);
@@ -184,11 +185,11 @@
 
     .tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.68rem, 1.7vw, 0.82rem);
+      font-size: clamp(0.85rem, 2.1vw, 1.05rem);
       letter-spacing: 0.48em;
       text-transform: uppercase;
-      color: var(--ink-faint);
-      font-weight: 300;
+      color: var(--ink-mid);
+      font-weight: 400;
       margin-bottom: 3rem;
       animation: fadeUp 0.8s ease both 0.8s;
     }
@@ -207,12 +208,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.72rem 1.55rem;
+      padding: 0.9rem 2.1rem;
       border: 1px solid var(--gold);
       color: var(--ink);
       text-decoration: none;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.7rem, 1.7vw, 0.8rem);
+      font-size: clamp(0.88rem, 2vw, 1rem);
       letter-spacing: 0.24em;
       text-transform: uppercase;
       font-weight: 600;
@@ -240,8 +241,8 @@
     .btn svg { position: relative; z-index: 1; }
 
     .btn-icon {
-      width: 15px;
-      height: 15px;
+      width: 19px;
+      height: 19px;
       fill: none;
       stroke: currentColor;
       stroke-width: 1.8;
@@ -256,14 +257,67 @@
       stroke: none;
     }
 
+    /* ── Sponsor ── */
+
+    .sponsor {
+      margin-top: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      animation: fadeUp 0.8s ease both 1.15s;
+    }
+
+    .sponsor-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+    }
+
+    .sponsor-btn {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(122, 92, 32, 0.3);
+      background: rgba(255,255,255,0.5);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+
+    .sponsor-btn:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 20px rgba(122, 92, 32, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .sponsor-btn img {
+      height: 44px;
+      width: auto;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+
+    /* ── Work in progress ── */
+
+    .wip {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(0.8rem, 1.8vw, 0.92rem);
+      font-style: italic;
+      letter-spacing: 0.22em;
+      color: var(--ink-mid);
+      margin-top: 2rem;
+      animation: fadeUp 0.8s ease both 1s;
+    }
+
     /* ── Contact text ── */
 
     .contact-text {
       margin-top: 1.4rem;
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(0.7rem, 1.6vw, 0.8rem);
+      font-size: clamp(0.85rem, 1.9vw, 0.96rem);
       letter-spacing: 0.18em;
-      color: var(--ink-faint);
+      color: var(--ink-mid);
       animation: fadeUp 0.8s ease both 1.1s;
     }
 
@@ -282,11 +336,9 @@
     /* ── Banner ── */
 
     @keyframes kenBurns {
-      0%   { transform: scale(1.0)  translate(0%,    0%);   }
-      25%  { transform: scale(1.06) translate(-1.5%, 0.5%); }
-      50%  { transform: scale(1.09) translate(0.5%,  -1%);  }
-      75%  { transform: scale(1.05) translate(1.5%,  0.8%); }
-      100% { transform: scale(1.0)  translate(0%,    0%);   }
+      0%   { transform: scale(1.0)  translate(0%,     0%);    }
+      50%  { transform: scale(1.03) translate(-0.6%,  0.3%);  }
+      100% { transform: scale(1.0)  translate(0%,     0%);    }
     }
 
     @keyframes bannerFadeIn {
@@ -296,37 +348,25 @@
 
     .banner {
       position: relative;
-      width: 100vw;
-      height: clamp(220px, 32vw, 380px);
-      margin-top: 3rem;
+      width: min(860px, 88vw);
+      height: clamp(260px, 38vw, 420px);
+      margin: 3rem auto 0;
       overflow: hidden;
-      animation: bannerFadeIn 1.2s ease both 1.2s;
-      border-top: 1px solid rgba(122, 92, 32, 0.25);
-      border-bottom: 1px solid rgba(122, 92, 32, 0.25);
+      border-radius: 4px;
+      border: 1px solid rgba(122, 92, 32, 0.3);
+      animation: bannerFadeIn 1.2s ease both 1.3s;
     }
 
     .banner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 40%;
       display: block;
-      filter: sepia(0.15) brightness(0.96) contrast(1.05);
-      animation: kenBurns 22s ease-in-out infinite;
+      filter: sepia(0.15) brightness(0.97) contrast(1.04);
+      animation: kenBurns 38s ease-in-out infinite;
       transform-origin: center center;
       will-change: transform;
-    }
-
-    /* Very subtle edge vignette — doesn't eat the image */
-    .banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to bottom,  rgba(240,233,216,0.35) 0%, transparent 18%, transparent 82%, rgba(232,223,200,0.35) 100%),
-        linear-gradient(to right,   rgba(240,233,216,0.2)  0%, transparent 12%, transparent 88%, rgba(240,233,216,0.2)  100%);
-      z-index: 1;
-      pointer-events: none;
     }
 
     /* ── Footer ── */
@@ -380,6 +420,15 @@
       </a>
 
     </div>
+
+    <div class="sponsor">
+      <span class="sponsor-label">Sponsored by</span>
+      <a class="sponsor-btn" href="https://is.gd/PolyMailmundiopus" target="_blank" rel="noopener noreferrer">
+        <img src="polymail.jpg" alt="Polymail" />
+      </a>
+    </div>
+
+    <p class="wip">— Work in progress —</p>
 
     <p class="contact-text">
       <a href="mailto:mundiopuscontact@gmail.com">mundiopuscontact@gmail.com</a>
