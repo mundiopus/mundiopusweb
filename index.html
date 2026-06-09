@@ -119,6 +119,16 @@
       animation: fadeUp .8s ease both .8s;
     }
 
+    .hero-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-style: italic; font-weight: 600;
+      color: var(--ink-mid); letter-spacing: .04em;
+      margin-top: 1.2rem; text-align: center;
+      max-width: 440px;
+      animation: fadeUp .8s ease both 1s;
+    }
+
     /* ── MARQUEE ── */
     .mq-band { overflow: hidden; border-top: 1px solid rgba(122,92,32,.13); border-bottom: 1px solid rgba(122,92,32,.13); padding: .7rem 0; }
     .mq-track { display: flex; white-space: nowrap; width: max-content; animation: mqLeft 26s linear infinite; }
@@ -149,9 +159,9 @@
     .links-section { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; }
     .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.4rem; }
     .btn {
-      display: inline-flex; align-items: center; gap: .55rem;
-      padding: .9rem 2.4rem; border: 1px solid var(--gold); color: var(--ink);
-      text-decoration: none; font-size: clamp(.86rem, 1.9vw, .98rem);
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: 1.2rem 3.2rem; border: 1px solid var(--gold); color: var(--ink);
+      text-decoration: none; font-size: clamp(1rem, 2.2vw, 1.15rem);
       letter-spacing: .26em; text-transform: uppercase; font-weight: 600;
       background: transparent; position: relative; overflow: hidden; transition: color .34s;
     }
@@ -164,7 +174,13 @@
 
     /* ── CONTACT ── */
     .contact-section { padding: 1.5rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; }
-    .wip { font-size: clamp(.78rem, 1.7vw, .88rem); font-style: italic; letter-spacing: .22em; color: var(--ink-mid); margin-bottom: 1.2rem; }
+    .wip-title {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900; letter-spacing: .18em; color: var(--ink);
+      margin-bottom: .8rem; text-align: center;
+    }
+    .wip { font-size: clamp(1rem, 2.2vw, 1.2rem); font-style: italic; letter-spacing: .12em; color: var(--ink-mid); margin-bottom: 1.6rem; text-align: center; }
     .contact-text { font-size: clamp(.82rem, 1.8vw, .92rem); letter-spacing: .18em; color: var(--ink-mid); }
     .contact-text a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
     .contact-text a:hover { color: var(--ink); border-bottom-color: var(--gold); }
@@ -182,9 +198,11 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="logo-wrapper">
+      <a href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer" style="display:contents;">
+      <div class="logo-wrapper" style="cursor:pointer;">
         <img src="high-1777047088.jpg" alt="Mundi Opus" />
       </div>
+      </a>
       <h1 class="title">Mundi Opus</h1>
       <div class="divider">
         <div class="divider-line"></div>
@@ -192,6 +210,7 @@
         <div class="divider-line"></div>
       </div>
       <p class="tagline">YouTube Channel</p>
+      <p class="hero-quote">A place to work on your projects, A place to outgrow yourself.</p>
     </section>
 
     <!-- MARQUEE -->
@@ -207,21 +226,6 @@
         <span class="mi">mundiopus.com <span class="mi-dot">✦</span></span>
       </div>
     </div>
-
-    <!-- STATS -->
-    <section class="stats-section">
-      <p class="eyebrow reveal">Channel at a glance</p>
-      <div class="stats-row">
-        <div class="stat-item reveal d1">
-          <div class="stat-num-wrap">
-            <span class="stat-num" data-target="70">0</span>
-            <span class="stat-sfx">K+</span>
-          </div>
-          <div class="stat-bar"></div>
-          <span class="stat-lbl">Members of YouTube Community</span>
-        </div>
-      </div>
-    </section>
 
     <!-- ORNAMENT -->
     <div class="orn reveal">
@@ -240,11 +244,15 @@
           </svg>
           <span>Watch</span>
         </a>
+        <a class="btn reveal d2" href="https://x.com/MundiOpus" target="_blank" rel="noopener noreferrer">
+          <svg class="btn-icon btn-icon--filled" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>Follow</span>
+        </a>
         <a class="btn reveal d3" href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">
-          <svg class="btn-icon" viewBox="0 0 24 24">
-            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6z"/>
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <path d="M16 10a4 4 0 0 1-8 0"/>
+          <svg class="btn-icon btn-icon--filled" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.948c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/>
           </svg>
           <span>Store</span>
         </a>
@@ -253,7 +261,8 @@
 
     <!-- CONTACT -->
     <section class="contact-section">
-      <p class="wip reveal">— Work in progress —</p>
+      <p class="wip-title reveal">Under Construction</p>
+      <p class="wip reveal">The full Mundi Opus experience is on its way.</p>
       <p class="contact-text reveal d2">
         <a href="mailto:mundiopuscontact@gmail.com">mundiopuscontact@gmail.com</a>
       </p>
