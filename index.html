@@ -185,6 +185,79 @@
     .contact-text a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
     .contact-text a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
+    /* ── SPONSOR ── */
+    .sponsor-section { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; }
+    .sponsor-label { font-family: 'Cormorant Garamond', serif; font-size: .62rem; letter-spacing: .38em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 1.6rem; }
+    .sponsor-logo-wrap { padding: 1rem 2rem; border: 1px solid rgba(122,92,32,.22); background: rgba(255,255,255,.5); margin-bottom: 1.6rem; }
+    .sponsor-logo-wrap img { height: 54px; width: auto; display: block; }
+    .sponsor-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 0; }
+    .sponsor-cta {
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: 1.1rem 2.8rem; border: 1px solid var(--gold); color: var(--ink);
+      text-decoration: none; font-size: clamp(.88rem, 1.8vw, 1rem);
+      letter-spacing: .26em; text-transform: uppercase; font-weight: 600;
+      background: transparent; position: relative; overflow: hidden; transition: color .34s;
+    }
+    .sponsor-cta::before { content: ''; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .34s cubic-bezier(.22,1,.36,1); z-index: 0; }
+    .sponsor-cta:hover::before { transform: scaleX(1); }
+    .sponsor-cta:hover { color: var(--bg); }
+    .sponsor-cta span { position: relative; z-index: 1; }
+    .sponsor-info-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: 1.1rem 2rem; border: 1px solid rgba(122,92,32,.35); color: var(--ink-mid);
+      font-size: clamp(.78rem, 1.6vw, .88rem); letter-spacing: .26em; text-transform: uppercase;
+      background: rgba(255,255,255,.3); cursor: pointer; transition: border-color .3s, color .3s;
+      font-family: 'Cormorant Garamond', serif; font-weight: 600;
+    }
+    .sponsor-info-btn:hover { border-color: var(--gold); color: var(--ink); }
+    /* ── POLYMAIL MODAL ── */
+    .pm-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(16,10,4,.52); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+      opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .pm-overlay.open { opacity: 1; pointer-events: auto; }
+    .pm-modal {
+      background: var(--bg); border: 1px solid rgba(122,92,32,.3);
+      max-width: 480px; width: 100%; padding: 2.8rem 2.8rem 2.4rem;
+      position: relative; text-align: left;
+      transform: translateY(18px); transition: transform .35s cubic-bezier(.22,1,.36,1);
+      box-shadow: 0 24px 80px rgba(16,10,4,.22);
+    }
+    .pm-overlay.open .pm-modal { transform: translateY(0); }
+    .pm-close {
+      position: absolute; top: 1rem; right: 1.1rem;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.2rem; color: var(--ink-faint); line-height: 1;
+      transition: color .2s;
+    }
+    .pm-close:hover { color: var(--ink); }
+    .pm-modal-logo { height: 32px; width: auto; margin-bottom: 1.4rem; display: block; }
+    .pm-modal h2 {
+      font-family: 'Playfair Display SC', serif; font-size: clamp(1.1rem, 3vw, 1.4rem);
+      font-weight: 700; letter-spacing: .1em; color: var(--ink); margin-bottom: .9rem;
+    }
+    .pm-modal p {
+      font-size: clamp(.84rem, 1.7vw, .94rem); line-height: 1.82; color: var(--ink-mid);
+      letter-spacing: .02em; margin-bottom: .7rem;
+    }
+    .pm-modal ul {
+      list-style: none; margin: .8rem 0 1.4rem; display: flex; flex-direction: column; gap: .45rem;
+    }
+    .pm-modal ul li::before { content: '✦'; color: var(--gold); margin-right: .6rem; font-size: .55rem; vertical-align: middle; }
+    .pm-modal ul li { font-size: clamp(.8rem, 1.6vw, .88rem); color: var(--ink-mid); letter-spacing: .03em; }
+    .pm-modal-cta {
+      display: inline-flex; align-items: center;
+      padding: .9rem 2.2rem; border: 1px solid var(--gold); color: var(--ink);
+      text-decoration: none; font-size: .82rem; letter-spacing: .26em; text-transform: uppercase;
+      font-weight: 600; background: transparent; position: relative; overflow: hidden; transition: color .34s;
+    }
+    .pm-modal-cta::before { content: ''; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .34s cubic-bezier(.22,1,.36,1); z-index: 0; }
+    .pm-modal-cta:hover::before { transform: scaleX(1); }
+    .pm-modal-cta:hover { color: var(--bg); }
+    .pm-modal-cta span { position: relative; z-index: 1; }
+
     /* ── FOOTER ── */
     footer { padding: 1.6rem; font-size: .56rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
 
@@ -216,14 +289,22 @@
     <!-- MARQUEE -->
     <div class="mq-band">
       <div class="mq-track">
-        <span class="mi">Mundi Opus <span class="mi-dot">✦</span></span>
-        <span class="mi">YouTube Channel <span class="mi-dot">✦</span></span>
-        <span class="mi">70K+ YouTube Community <span class="mi-dot">✦</span></span>
-        <span class="mi">mundiopus.com <span class="mi-dot">✦</span></span>
-        <span class="mi">Mundi Opus <span class="mi-dot">✦</span></span>
-        <span class="mi">YouTube Channel <span class="mi-dot">✦</span></span>
-        <span class="mi">70K+ YouTube Community <span class="mi-dot">✦</span></span>
-        <span class="mi">mundiopus.com <span class="mi-dot">✦</span></span>
+        <span class="mi">{ } <span class="mi-dot">✦</span></span>
+        <span class="mi">[ ] <span class="mi-dot">✦</span></span>
+        <span class="mi">( ) <span class="mi-dot">✦</span></span>
+        <span class="mi">// <span class="mi-dot">✦</span></span>
+        <span class="mi">{ } <span class="mi-dot">✦</span></span>
+        <span class="mi">[ ] <span class="mi-dot">✦</span></span>
+        <span class="mi">( ) <span class="mi-dot">✦</span></span>
+        <span class="mi">// <span class="mi-dot">✦</span></span>
+        <span class="mi">{ } <span class="mi-dot">✦</span></span>
+        <span class="mi">[ ] <span class="mi-dot">✦</span></span>
+        <span class="mi">( ) <span class="mi-dot">✦</span></span>
+        <span class="mi">// <span class="mi-dot">✦</span></span>
+        <span class="mi">{ } <span class="mi-dot">✦</span></span>
+        <span class="mi">[ ] <span class="mi-dot">✦</span></span>
+        <span class="mi">( ) <span class="mi-dot">✦</span></span>
+        <span class="mi">// <span class="mi-dot">✦</span></span>
       </div>
     </div>
 
@@ -256,6 +337,20 @@
           </svg>
           <span>Store</span>
         </a>
+      </div>
+    </section>
+
+    <!-- SPONSOR -->
+    <section class="sponsor-section reveal">
+      <p class="sponsor-label">Sponsored by</p>
+      <div class="sponsor-logo-wrap">
+        <img src="polymail.jpg" alt="Polymail" />
+      </div>
+      <div class="sponsor-actions">
+        <a class="sponsor-cta" href="https://app.polymail.io/login?utm_campaign=polymail_affiliates_2026&utm_medium=referral&utm_source=affiliate&via=MundiOpus" target="_blank" rel="noopener noreferrer">
+          <span>Try Polymail</span>
+        </a>
+        <button class="sponsor-info-btn" id="pmInfoBtn">More Info</button>
       </div>
     </section>
 
@@ -307,6 +402,17 @@
     }, { threshold: .5 });
     document.querySelectorAll('.stat-num').forEach(el => cObs.observe(el));
 
+    // Infinite marquee: clone items until track fills screen, then duplicate for seamless loop
+    (function () {
+      const track = document.querySelector('.mq-track');
+      if (!track) return;
+      const seed = Array.from(track.children);
+      while (track.scrollWidth < window.innerWidth * 1.5) {
+        seed.forEach(n => track.appendChild(n.cloneNode(true)));
+      }
+      track.innerHTML += track.innerHTML;
+    })();
+
     let pending = false;
     window.addEventListener('scroll', () => {
       if (pending) return;
@@ -319,6 +425,36 @@
       });
     }, { passive: true });
   </script>
+
+  <!-- POLYMAIL MODAL -->
+  <div class="pm-overlay" id="pmOverlay">
+    <div class="pm-modal">
+      <button class="pm-close" id="pmClose" aria-label="Close">✕</button>
+      <img class="pm-modal-logo" src="polymail.jpg" alt="Polymail" />
+      <h2>Your Inbox, Upgraded</h2>
+      <p>Polymail is the email client built for people who take their work seriously — clean interface, powerful tools, zero noise.</p>
+      <ul>
+        <li>Email tracking — know when your messages are read</li>
+        <li>Send Later — schedule emails for the perfect moment</li>
+        <li>Templates — reply fast without sounding like a robot</li>
+        <li>Team collaboration — share threads, no more forwarding</li>
+        <li>Works with Gmail, Outlook &amp; iCloud</li>
+      </ul>
+      <a class="pm-modal-cta" href="https://app.polymail.io/login?utm_campaign=polymail_affiliates_2026&utm_medium=referral&utm_source=affiliate&via=MundiOpus" target="_blank" rel="noopener noreferrer">
+        <span>Try Polymail Free</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Polymail modal
+    const pmOverlay = document.getElementById('pmOverlay');
+    document.getElementById('pmInfoBtn').addEventListener('click', () => pmOverlay.classList.add('open'));
+    document.getElementById('pmClose').addEventListener('click',   () => pmOverlay.classList.remove('open'));
+    pmOverlay.addEventListener('click', e => { if (e.target === pmOverlay) pmOverlay.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') pmOverlay.classList.remove('open'); });
+  </script>
+
 
 </body>
 </html>
