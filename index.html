@@ -309,6 +309,20 @@
     /* ── FOOTER ── */
     footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
 
+    /* ── NAV SHORT LABEL (hidden on desktop) ── */
+    .nav-full { display: inline; }
+    .nav-short { display: none; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .site-nav { gap: .75rem; padding: 1rem; justify-content: center; }
+      .nav-link  { font-size: .78rem; letter-spacing: .1em; }
+      .nav-full  { display: none; }
+      .nav-short { display: inline; }
+      .btn { padding: 1rem 2rem; }
+      .pm-modal { padding: 2rem 1.6rem 1.8rem; }
+    }
+
   </style>
 </head>
 <body>
@@ -317,7 +331,7 @@
   <nav class="site-nav">
     <a href="index.html" class="nav-link nav-link--active">Home</a>
     <span class="nav-sep">✦</span>
-    <a href="about.html" class="nav-link">What is Mundi Opus</a>
+    <a href="about.html" class="nav-link"><span class="nav-full">What is Mundi Opus</span><span class="nav-short">About</span></a>
     <span class="nav-sep">✦</span>
     <a href="contact.html" class="nav-link">Contact</a>
   </nav>
