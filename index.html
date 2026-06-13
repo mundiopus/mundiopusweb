@@ -25,17 +25,57 @@
 
     html { scroll-behavior: smooth; }
 
-    @keyframes fadeUp      { from { opacity:0; transform:translateY(20px) } to { opacity:1; transform:translateY(0) } }
-    @keyframes float       { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-6px) } }
+    @keyframes fadeUp      { from { opacity:0; transform:translate3d(0,20px,0) } to { opacity:1; transform:translate3d(0,0,0) } }
+    @keyframes float       { 0%,100% { transform:translate3d(0,0,0) } 50% { transform:translate3d(0,-6px,0) } }
     @keyframes ringPulse   {
       0%,100% { box-shadow:0 0 0 3px var(--gold),0 0 0 6px var(--bg),0 0 0 8px var(--gold),0 8px 40px rgba(22,16,10,.18) }
       50%     { box-shadow:0 0 0 3px var(--gold-pale),0 0 0 6px var(--bg),0 0 0 8px var(--gold-pale),0 12px 60px rgba(22,16,10,.26) }
     }
-    @keyframes lineGrow    { from { transform:scaleX(0); opacity:0 } to { transform:scaleX(1); opacity:1 } }
-    @keyframes starSpin    { to { transform:rotate(360deg) } }
+    @keyframes lineGrow    { from { transform:scaleX(0) translate3d(0,0,0); opacity:0 } to { transform:scaleX(1) translate3d(0,0,0); opacity:1 } }
+    @keyframes starSpin    { to { transform:rotate(360deg) translate3d(0,0,0) } }
     @keyframes titleReveal { from { opacity:0; letter-spacing:.32em } to { opacity:1; letter-spacing:.16em } }
-    @keyframes mqLeft      { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+    @keyframes mqLeft      { from { transform:translate3d(0,0,0) } to { transform:translate3d(-50%,0,0) } }
     @keyframes pulseBar    { 0%,100% { opacity:.3; width:28px } 50% { opacity:.9; width:44px } }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: flex-start; gap: 3rem;
+      padding: 1rem 2.4rem; height: 72px;
+      background: rgba(240,233,216,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,92,32,.15);
+    }
+    .nav-link {
+      font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mid); text-decoration: none; font-weight: 600;
+      transition: color .3s;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link--active { color: var(--gold); }
+    .nav-sep { font-size: .65rem; color: var(--gold-pale); }
+
+    /* ── HERO ABOUT LINK ── */
+    .hero-about-link {
+      display: inline-flex; align-items: center; gap: .7rem;
+      margin-top: 2.2rem;
+      padding: .9rem 2.4rem;
+      font-size: 1rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mid); text-decoration: none; font-weight: 600;
+      border: 1px solid rgba(122,92,32,.35);
+      position: relative; overflow: hidden;
+      transition: color .34s;
+      animation: fadeUp .8s ease both 1.2s;
+    }
+    .hero-about-link::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--ink); transform: scaleX(0); transform-origin: left;
+      transition: transform .34s cubic-bezier(.22,1,.36,1); z-index: 0;
+    }
+    .hero-about-link:hover::before { transform: scaleX(1); }
+    .hero-about-link:hover { color: var(--bg); }
+    .hero-about-link span { position: relative; z-index: 1; }
+    .hero-about-link-arrow { position: relative; z-index: 1; transition: transform .3s; }
+    .hero-about-link:hover .hero-about-link-arrow { transform: translateX(4px); }
 
     body {
       min-height: 100vh;
@@ -44,6 +84,7 @@
       color: var(--ink);
       text-align: center;
       overflow-x: hidden;
+      padding-top: 72px;
     }
     body::before {
       content: ''; position: fixed; inset: 0;
@@ -57,18 +98,20 @@
     }
 
     .scroll-progress {
-      position: fixed; top: 0; left: 0;
+      position: fixed; top: 72px; left: 0;
       width: 100%; height: 1px;
       background: linear-gradient(to right, var(--gold), var(--gold-pale), var(--gold));
       transform: scaleX(0); transform-origin: left; z-index: 100;
+      will-change: transform;
     }
 
     .reveal {
-      opacity: 0; transform: translateY(24px);
+      opacity: 0; transform: translate3d(0,24px,0);
       transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1);
+      will-change: opacity, transform;
     }
     .reveal.fade-only { transform: none; }
-    .reveal.visible   { opacity: 1; transform: none; }
+    .reveal.visible   { opacity: 1; transform: translate3d(0,0,0); }
     .d1 { transition-delay: .1s }
     .d2 { transition-delay: .22s }
     .d3 { transition-delay: .36s }
@@ -88,6 +131,8 @@
       border-radius: 50%; overflow: hidden;
       margin-bottom: 2.4rem;
       animation: fadeUp .9s ease both .1s, float 7s ease-in-out infinite 1s, ringPulse 5s ease-in-out infinite 1s;
+      will-change: transform;
+      backface-visibility: hidden;
     }
     .logo-wrapper img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .8s ease; }
     .logo-wrapper:hover img { transform: scale(1.06); }
@@ -113,7 +158,7 @@
     .divider-star { font-size: .75rem; color: var(--gold); display: inline-block; animation: starSpin 16s linear infinite; }
 
     .tagline {
-      font-size: clamp(.8rem, 1.9vw, .96rem);
+      font-size: clamp(.96rem, 2vw, 1.1rem);
       letter-spacing: .46em; text-transform: uppercase;
       color: var(--ink-mid); font-weight: 400;
       animation: fadeUp .8s ease both .8s;
@@ -121,7 +166,7 @@
 
     .hero-quote {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-size: clamp(1.25rem, 3vw, 1.6rem);
       font-style: italic; font-weight: 600;
       color: var(--ink-mid); letter-spacing: .04em;
       margin-top: 1.2rem; text-align: center;
@@ -131,8 +176,8 @@
 
     /* ── MARQUEE ── */
     .mq-band { overflow: hidden; border-top: 1px solid rgba(122,92,32,.13); border-bottom: 1px solid rgba(122,92,32,.13); padding: .7rem 0; }
-    .mq-track { display: flex; white-space: nowrap; width: max-content; animation: mqLeft 26s linear infinite; }
-    .mi { display: inline-flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; font-size: clamp(.7rem, 1.5vw, .82rem); letter-spacing: .4em; text-transform: uppercase; color: var(--ink-mid); }
+    .mq-track { display: flex; white-space: nowrap; width: max-content; animation: mqLeft 26s linear infinite; will-change: transform; backface-visibility: hidden; }
+    .mi { display: inline-flex; align-items: center; gap: 1.5rem; padding: 0 1.5rem; font-size: clamp(.84rem, 1.7vw, .96rem); letter-spacing: .4em; text-transform: uppercase; color: var(--ink-mid); }
     .mi-dot { color: var(--gold); font-size: .36rem; }
 
     /* ── STATS ── */
@@ -140,13 +185,13 @@
       padding: 3rem 2rem 3rem;
       display: flex; flex-direction: column; align-items: center;
     }
-    .eyebrow { font-size: .62rem; letter-spacing: .48em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.6rem; }
+    .eyebrow { font-size: .8rem; letter-spacing: .48em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.6rem; }
     .stats-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; width: min(700px, 88vw); }
     .stat-item { flex: 1; min-width: 150px; display: flex; flex-direction: column; align-items: center; gap: .7rem; padding: 1.5rem 2rem; }
     .stat-num-wrap { font-family: 'Playfair Display SC', serif; font-size: clamp(3rem, 7.5vw, 5rem); font-weight: 900; color: var(--ink); line-height: .95; display: flex; align-items: baseline; gap: .07em; }
     .stat-sfx { font-size: .44em; color: var(--gold-pale); }
     .stat-bar { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); animation: pulseBar 3.5s ease-in-out infinite; }
-    .stat-lbl { font-size: .62rem; letter-spacing: .44em; text-transform: uppercase; color: var(--ink-faint); }
+    .stat-lbl { font-size: .78rem; letter-spacing: .44em; text-transform: uppercase; color: var(--ink-faint); }
     .stat-sep { width: 1px; height: 52px; align-self: center; background: linear-gradient(to bottom, transparent, var(--gold), transparent); flex-shrink: 0; }
 
     /* ── ORNAMENT ── */
@@ -183,21 +228,21 @@
       font-weight: 900; letter-spacing: .18em; color: var(--ink);
       margin-bottom: .8rem; text-align: center;
     }
-    .wip { font-size: clamp(1rem, 2.2vw, 1.2rem); font-style: italic; letter-spacing: .12em; color: var(--ink-mid); margin-bottom: 1.6rem; text-align: center; }
-    .contact-text { font-size: clamp(.82rem, 1.8vw, .92rem); letter-spacing: .18em; color: var(--ink-mid); }
+    .wip { font-size: clamp(1.15rem, 2.4vw, 1.35rem); font-style: italic; letter-spacing: .12em; color: var(--ink-mid); margin-bottom: 1.6rem; text-align: center; }
+    .contact-text { font-size: clamp(1rem, 2vw, 1.12rem); letter-spacing: .18em; color: var(--ink-mid); }
     .contact-text a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
     .contact-text a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
     /* ── SPONSOR ── */
     .sponsor-section { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; }
-    .sponsor-label { font-family: 'Cormorant Garamond', serif; font-size: .62rem; letter-spacing: .38em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 1.6rem; }
+    .sponsor-label { font-family: 'Cormorant Garamond', serif; font-size: .8rem; letter-spacing: .38em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 1.6rem; }
     .sponsor-logo-wrap { padding: 1rem 2rem; border: 1px solid rgba(122,92,32,.22); background: rgba(255,255,255,.5); margin-bottom: 1.6rem; }
     .sponsor-logo-wrap img { height: 54px; width: auto; display: block; }
     .sponsor-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 0; }
     .sponsor-cta {
       display: inline-flex; align-items: center; gap: .7rem;
       padding: 1.1rem 2.8rem; border: 1px solid var(--gold); color: var(--ink);
-      text-decoration: none; font-size: clamp(.88rem, 1.8vw, 1rem);
+      text-decoration: none; font-size: clamp(1rem, 2vw, 1.1rem);
       letter-spacing: .26em; text-transform: uppercase; font-weight: 600;
       background: transparent; position: relative; overflow: hidden; transition: color .34s;
     }
@@ -208,7 +253,7 @@
     .sponsor-info-btn {
       display: inline-flex; align-items: center; gap: .5rem;
       padding: 1.1rem 2rem; border: 1px solid rgba(122,92,32,.35); color: var(--ink-mid);
-      font-size: clamp(.78rem, 1.6vw, .88rem); letter-spacing: .26em; text-transform: uppercase;
+      font-size: clamp(.92rem, 1.8vw, 1rem); letter-spacing: .26em; text-transform: uppercase;
       background: rgba(255,255,255,.3); cursor: pointer; transition: border-color .3s, color .3s;
       font-family: 'Cormorant Garamond', serif; font-weight: 600;
     }
@@ -262,11 +307,20 @@
     .pm-modal-cta span { position: relative; z-index: 1; }
 
     /* ── FOOTER ── */
-    footer { padding: 1.6rem; font-size: .56rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
+    footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
 
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-link nav-link--active">Home</a>
+    <span class="nav-sep">✦</span>
+    <a href="about.html" class="nav-link">What is Mundi Opus</a>
+    <span class="nav-sep">✦</span>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </nav>
 
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -287,6 +341,7 @@
       </div>
       <p class="tagline">YouTube Channel</p>
       <p class="hero-quote">A place to work on your projects, A place to outgrow yourself.</p>
+      <a class="hero-about-link" href="about.html"><span>What is Mundi Opus</span> <span class="hero-about-link-arrow">→</span></a>
     </section>
 
     <!-- MARQUEE -->
@@ -459,5 +514,46 @@
   </script>
 
 
+  <script>
+    // Inertia scroll — eases wheel scroll to a stop instead of cutting abruptly
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if ('ontouchstart' in window) return; // keep native momentum on touch/trackpad
+
+      const EASE = 0.09; // 0 = never arrives, 1 = instant — 0.09 feels natural
+      let target  = window.scrollY;
+      let current = window.scrollY;
+      let raf     = null;
+
+      function step() {
+        const gap = target - current;
+        if (Math.abs(gap) < 0.5) {
+          current = target;
+          window.scrollTo(0, current);
+          raf = null;
+          return;
+        }
+        current += gap * EASE;
+        window.scrollTo(0, current);
+        raf = requestAnimationFrame(step);
+      }
+
+      window.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        // normalise delta across deltaMode: 0=pixel 1=line 2=page
+        const delta = e.deltaMode === 1 ? e.deltaY * 24
+                    : e.deltaMode === 2 ? e.deltaY * window.innerHeight
+                    : e.deltaY;
+        const maxY = document.documentElement.scrollHeight - window.innerHeight;
+        target = Math.max(0, Math.min(target + delta, maxY));
+        if (!raf) raf = requestAnimationFrame(step);
+      }, { passive: false });
+
+      // Re-sync when keyboard / anchor nav scrolls the page without our handler
+      window.addEventListener('scroll', function () {
+        if (!raf) target = current = window.scrollY;
+      }, { passive: true });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is Mundi Opus</title>
+  <link rel="icon" href="high-1777047088.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="high-1777047088.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Playfair+Display+SC:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f0e9d8;
+      --bg-warm:  #e8dfc8;
+      --ink:      #16100a;
+      --ink-mid:  #4a3820;
+      --ink-faint:#8a7256;
+      --gold:     #7a5c20;
+      --gold-pale:#b8964a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @keyframes fadeUp    { from { opacity:0; transform:translate3d(0,20px,0) } to { opacity:1; transform:translate3d(0,0,0) } }
+    @keyframes lineGrow  { from { transform:scaleX(0); opacity:0 } to { transform:scaleX(1); opacity:1 } }
+    @keyframes starSpin  { to { transform:rotate(360deg) } }
+    @keyframes imgReveal { from { opacity:0; transform:scale(1.03) } to { opacity:1; transform:scale(1) } }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--ink);
+      text-align: center;
+      overflow-x: hidden;
+      padding-top: 72px;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 50% 36%, var(--bg) 0%, var(--bg-warm) 58%, #d9cfb8 100%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: flex-start; gap: 3rem;
+      padding: 1rem 2.4rem; height: 72px;
+      background: rgba(240,233,216,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,92,32,.15);
+    }
+    .nav-link {
+      font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mid); text-decoration: none; font-weight: 600;
+      transition: color .3s; font-family: 'Cormorant Garamond', serif;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link--active { color: var(--gold); }
+    .nav-sep { font-size: .65rem; color: var(--gold-pale); }
+
+    /* ── SCROLL PROGRESS ── */
+    .scroll-progress {
+      position: fixed; top: 72px; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, var(--gold), var(--gold-pale), var(--gold));
+      transform: scaleX(0); transform-origin: left; z-index: 100;
+      will-change: transform;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translate3d(0,24px,0);
+      transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1);
+      will-change: opacity, transform;
+    }
+    .reveal.fade-only { transform: none; }
+    .reveal.visible   { opacity: 1; transform: translate3d(0,0,0); }
+    .d1 { transition-delay: .12s }
+    .d2 { transition-delay: .26s }
+    .d3 { transition-delay: .42s }
+
+    .page { position: relative; z-index: 1; }
+
+    /* ── ABOUT HERO ── */
+    .about-hero {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 4rem 2rem 2.4rem;
+    }
+    .about-eyebrow {
+      font-size: .76rem; letter-spacing: .52em; text-transform: uppercase;
+      color: var(--ink-faint); margin-bottom: 1.4rem;
+      animation: fadeUp .7s ease both .1s;
+    }
+    .about-title {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 900; letter-spacing: .14em; color: var(--ink); line-height: 1;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 1s cubic-bezier(.22,1,.36,1) both .25s;
+    }
+    .divider {
+      display: flex; align-items: center; gap: .9rem;
+      width: min(380px, 80vw); margin-bottom: 0;
+      animation: fadeUp .8s ease both .5s;
+    }
+    .divider-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform-origin: center; animation: lineGrow 1s ease both .7s;
+    }
+    .divider-star { font-size: .75rem; color: var(--gold); display: inline-block; animation: starSpin 16s linear infinite; }
+
+    /* ── SPLIT LAYOUT (image + text side by side on desktop) ── */
+    .about-split {
+      display: flex;
+      align-items: flex-start;
+      gap: 4rem;
+      padding: 3rem 4rem 4rem;
+      max-width: 1320px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .about-split-text {
+      flex: 1;
+      display: flex; flex-direction: column; gap: 1.8rem;
+      min-width: 0;
+    }
+    .about-split-image {
+      flex: 1.1;
+      min-width: 0;
+    }
+    .about-image-frame {
+      border: 1px solid rgba(122,92,32,.28);
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(22,16,10,.18), 0 4px 20px rgba(22,16,10,.1);
+    }
+    .about-image-frame img {
+      width: 100%; height: auto; display: block;
+      animation: imgReveal 1.2s cubic-bezier(.22,1,.36,1) both .3s;
+    }
+    .about-image-caption {
+      margin-top: .9rem;
+      font-size: .74rem; letter-spacing: .38em; text-transform: uppercase;
+      color: var(--ink-faint); font-style: italic; text-align: center;
+    }
+
+    /* mobile: stack vertically */
+    @media (max-width: 860px) {
+      .about-split {
+        flex-direction: column;
+        padding: 2rem 1.6rem 3rem;
+        gap: 2.4rem;
+      }
+      .about-split-image { order: -1; }
+    }
+
+    /* ── TEXT STYLES ── */
+    .about-split-text p {
+      font-size: clamp(1.18rem, 2.2vw, 1.35rem);
+      line-height: 1.92; color: var(--ink-mid);
+      font-weight: 300; letter-spacing: .02em;
+    }
+    .about-split-text p strong { font-weight: 600; color: var(--ink); }
+    .about-pull {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      font-style: italic; font-weight: 900;
+      color: var(--ink); line-height: 1.35;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.4rem;
+    }
+    .about-closing {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: 700; letter-spacing: .2em;
+      color: var(--gold);
+    }
+
+    /* ── ORNAMENT ── */
+    .orn { display: flex; align-items: center; justify-content: center; gap: 1.1rem; padding: 1rem 3rem; }
+    .orn-line { flex: 1; max-width: 180px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+    .orn-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+    .orn-glyph { font-size: .68rem; color: var(--gold); letter-spacing: .6em; }
+
+    /* ── CTA ── */
+    .about-cta-section {
+      padding: 1rem 2rem 4rem;
+      display: flex; justify-content: center;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .7rem;
+      padding: 1.2rem 3.2rem; border: 1px solid var(--gold); color: var(--ink);
+      text-decoration: none; font-size: clamp(1rem, 2.2vw, 1.15rem);
+      letter-spacing: .26em; text-transform: uppercase; font-weight: 600;
+      background: transparent; position: relative; overflow: hidden; transition: color .34s;
+    }
+    .btn::before { content: ''; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .34s cubic-bezier(.22,1,.36,1); z-index: 0; }
+    .btn:hover::before { transform: scaleX(1); }
+    .btn:hover { color: var(--bg); }
+    .btn span, .btn svg { position: relative; z-index: 1; }
+    .btn-icon { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .btn-icon--filled { fill: currentColor; stroke: none; }
+
+    /* ── FOOTER ── */
+    footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <span class="nav-sep">✦</span>
+    <a href="about.html" class="nav-link nav-link--active">What is Mundi Opus</a>
+    <span class="nav-sep">✦</span>
+    <a href="contact.html" class="nav-link">Contact</a>
+  </nav>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="about-hero">
+      <p class="about-eyebrow">The Story</p>
+      <h1 class="about-title">What is Mundi Opus</h1>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-star">✦</span>
+        <div class="divider-line"></div>
+      </div>
+    </section>
+
+    <!-- SPLIT: TEXT LEFT + IMAGE RIGHT -->
+    <section class="about-split">
+
+      <!-- LEFT: TEXT -->
+      <div class="about-split-text">
+
+        <p class="reveal">
+          <strong>Mundi Opus began as a YouTube channel dedicated to the art of deep work and focused creation.</strong>
+          Built on a simple but powerful conviction: that the act of working — truly working,
+          without distraction or performance — deserves its own stage.
+        </p>
+
+        <p class="reveal d1">
+          But the mission has always been larger than a video feed. We believe that when we
+          work together — even from different corners of the globe — we unlock a higher level
+          of productivity and purpose. <strong>Presence is contagious. Focus is, too.</strong>
+        </p>
+
+        <blockquote class="about-pull reveal d2">
+          "When we work together, we unlock a higher level of productivity and purpose."
+        </blockquote>
+
+        <p class="reveal d1">
+          What started as a digital study space is evolving into a collaborative ecosystem.
+          Mundi Opus is where projects come to life, where focus becomes a habit, and where
+          a global community of builders, students, and creators find their rhythm.
+        </p>
+
+        <p class="about-closing reveal d2">This is just the beginning.</p>
+
+      </div>
+
+      <!-- RIGHT: IMAGES STACKED -->
+      <div class="about-split-image reveal fade-only">
+        <div class="about-image-frame">
+          <img src="-1777065642.jpg" alt="Mundi Opus — a world of work and creation" />
+        </div>
+        <div class="about-image-frame" style="margin-top:1.4rem;">
+          <img src="DALL·E 2024-12-02 12.12.28 - A realistic and detailed depiction of a library inspired by Mullins Library at the University of Arkansas. The architecture showcases a blend of class.webp" alt="A place to focus and grow" />
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ORNAMENT -->
+    <div class="orn reveal">
+      <div class="orn-line"></div>
+      <span class="orn-glyph">✦ ✦ ✦</span>
+      <div class="orn-line r"></div>
+    </div>
+
+    <!-- CTA -->
+    <section class="about-cta-section">
+      <a class="btn reveal" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">
+        <svg class="btn-icon btn-icon--filled" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+        <span>Watch on YouTube</span>
+      </a>
+    </section>
+
+  </div>
+
+  <footer>mundiopus.com</footer>
+
+  <script>
+    const progressBar = document.getElementById('scrollProgress');
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    let pending = false;
+    window.addEventListener('scroll', () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        const sy    = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.transform = `scaleX(${total > 0 ? sy / total : 0})`;
+        pending = false;
+      });
+    }, { passive: true });
+  </script>
+
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if ('ontouchstart' in window) return;
+      const EASE = 0.09;
+      let target = window.scrollY, current = window.scrollY, raf = null;
+      function step() {
+        const gap = target - current;
+        if (Math.abs(gap) < 0.5) { current = target; window.scrollTo(0, current); raf = null; return; }
+        current += gap * EASE;
+        window.scrollTo(0, current);
+        raf = requestAnimationFrame(step);
+      }
+      window.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
+        target = Math.max(0, Math.min(target + delta, document.documentElement.scrollHeight - window.innerHeight));
+        if (!raf) raf = requestAnimationFrame(step);
+      }, { passive: false });
+      window.addEventListener('scroll', function () { if (!raf) target = current = window.scrollY; }, { passive: true });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Mundi Opus</title>
+  <link rel="icon" href="high-1777047088.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="high-1777047088.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Playfair+Display+SC:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f0e9d8;
+      --bg-warm:  #e8dfc8;
+      --ink:      #16100a;
+      --ink-mid:  #4a3820;
+      --ink-faint:#8a7256;
+      --gold:     #7a5c20;
+      --gold-pale:#b8964a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    @keyframes fadeUp   { from { opacity:0; transform:translate3d(0,20px,0) } to { opacity:1; transform:translate3d(0,0,0) } }
+    @keyframes lineGrow { from { transform:scaleX(0); opacity:0 } to { transform:scaleX(1); opacity:1 } }
+    @keyframes starSpin { to { transform:rotate(360deg) } }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--ink);
+      text-align: center;
+      overflow-x: hidden;
+      padding-top: 72px;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 50% 36%, var(--bg) 0%, var(--bg-warm) 58%, #d9cfb8 100%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: flex-start; gap: 3rem;
+      padding: 1rem 2.4rem; height: 72px;
+      background: rgba(240,233,216,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,92,32,.15);
+    }
+    .nav-link {
+      font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mid); text-decoration: none; font-weight: 600;
+      transition: color .3s; font-family: 'Cormorant Garamond', serif;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-link--active { color: var(--gold); }
+    .nav-sep { font-size: .65rem; color: var(--gold-pale); }
+
+    /* ── SCROLL PROGRESS ── */
+    .scroll-progress {
+      position: fixed; top: 72px; left: 0;
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, var(--gold), var(--gold-pale), var(--gold));
+      transform: scaleX(0); transform-origin: left; z-index: 100;
+      will-change: transform;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translate3d(0,24px,0);
+      transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1);
+      will-change: opacity, transform;
+    }
+    .reveal.fade-only { transform: none; }
+    .reveal.visible   { opacity: 1; transform: translate3d(0,0,0); }
+    .d1 { transition-delay: .1s }
+    .d2 { transition-delay: .22s }
+    .d3 { transition-delay: .36s }
+    .d4 { transition-delay: .48s }
+
+    .page { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    .contact-hero {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 4rem 2rem 2.4rem;
+    }
+    .contact-eyebrow {
+      font-size: .76rem; letter-spacing: .52em; text-transform: uppercase;
+      color: var(--ink-faint); margin-bottom: 1.4rem;
+      animation: fadeUp .7s ease both .1s;
+    }
+    .contact-title {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 900; letter-spacing: .14em; color: var(--ink); line-height: 1;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 1s cubic-bezier(.22,1,.36,1) both .25s;
+    }
+    .divider {
+      display: flex; align-items: center; gap: .9rem;
+      width: min(380px, 80vw);
+      animation: fadeUp .8s ease both .5s;
+    }
+    .divider-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform-origin: center; animation: lineGrow 1s ease both .7s;
+    }
+    .divider-star { font-size: .75rem; color: var(--gold); display: inline-block; animation: starSpin 16s linear infinite; }
+
+    /* ── INTRO TEXT ── */
+    .contact-intro {
+      padding: 0 2rem 2.4rem;
+      display: flex; justify-content: center;
+    }
+    .contact-intro-text {
+      max-width: 560px;
+      font-size: clamp(1.18rem, 2.6vw, 1.35rem);
+      line-height: 1.9; font-weight: 300; font-style: italic;
+      color: var(--ink-mid); letter-spacing: .02em;
+    }
+
+    /* ── CONTACT CARDS ── */
+    .contact-section {
+      padding: 3rem 2rem 2rem;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .contact-grid {
+      display: flex; flex-direction: column; gap: 0;
+      width: min(640px, 92vw);
+    }
+    .contact-row {
+      display: flex; align-items: center;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid rgba(122,92,32,.12);
+      text-decoration: none; color: inherit;
+      gap: 1.4rem;
+      transition: background .25s;
+      position: relative;
+    }
+    .contact-row:first-child { border-top: 1px solid rgba(122,92,32,.12); }
+    .contact-row-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(122,92,32,.2);
+      color: var(--gold);
+      transition: background .25s, color .25s, border-color .25s;
+    }
+    .contact-row-icon svg { width: 20px; height: 20px; }
+    .contact-row-body { flex: 1; text-align: left; }
+    .contact-row-platform {
+      font-size: .76rem; letter-spacing: .44em; text-transform: uppercase;
+      color: var(--ink-faint); display: block; margin-bottom: .3rem;
+    }
+    .contact-row-handle {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(1rem, 2.8vw, 1.3rem);
+      font-weight: 700; letter-spacing: .06em; color: var(--ink);
+      transition: color .25s;
+    }
+    .contact-row-arrow {
+      font-size: 1rem; color: var(--ink-faint);
+      transition: transform .3s, color .3s;
+      flex-shrink: 0;
+    }
+    .contact-row:hover .contact-row-icon { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .contact-row:hover .contact-row-handle { color: var(--gold); }
+    .contact-row:hover .contact-row-arrow { transform: translateX(4px); color: var(--gold); }
+
+    /* ── BRAND COLORS ── */
+    .contact-row--yt  .contact-row-icon { color: #FF0000; border-color: rgba(255,0,0,.22); background: rgba(255,0,0,.05); }
+    .contact-row--x   .contact-row-icon { color: #0f0f0f; border-color: rgba(0,0,0,.18);   background: rgba(0,0,0,.04); }
+    .contact-row--gum .contact-row-icon { color: #e1409a; border-color: rgba(225,64,154,.25); background: rgba(225,64,154,.06); }
+    .contact-row--notion .contact-row-icon { background: #ffffff; border-color: rgba(0,0,0,.14); }
+    .contact-row--notion .contact-row-icon img { width: 22px; height: 22px; object-fit: contain; display: block; }
+    .contact-row--email .contact-row-icon { color: #EA4335; border-color: rgba(234,67,53,.22); background: rgba(234,67,53,.05); }
+
+    /* email row — static, not a link */
+    .contact-row--email { cursor: default; }
+    .contact-row--email:hover .contact-row-icon { background: rgba(234,67,53,.05); color: #EA4335; border-color: rgba(234,67,53,.22); }
+    .contact-row--email:hover .contact-row-handle { color: var(--ink); }
+    .contact-row--email .contact-row-handle { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: .04em; font-size: clamp(1rem, 2.6vw, 1.2rem); }
+
+    /* ── ORNAMENT ── */
+    .orn { display: flex; align-items: center; justify-content: center; gap: 1.1rem; padding: 2rem 3rem 1rem; }
+    .orn-line { flex: 1; max-width: 180px; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
+    .orn-line.r { background: linear-gradient(to left, transparent, var(--gold)); }
+    .orn-glyph { font-size: .68rem; color: var(--gold); letter-spacing: .6em; }
+
+    /* ── FOOTER ── */
+    footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <span class="nav-sep">✦</span>
+    <a href="about.html" class="nav-link">What is Mundi Opus</a>
+    <span class="nav-sep">✦</span>
+    <a href="contact.html" class="nav-link nav-link--active">Contact</a>
+  </nav>
+
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="contact-hero">
+      <p class="contact-eyebrow">Get in touch</p>
+      <h1 class="contact-title">Contact</h1>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-star">✦</span>
+        <div class="divider-line"></div>
+      </div>
+    </section>
+
+    <!-- INTRO TEXT -->
+    <section class="contact-intro reveal fade-only">
+      <p class="contact-intro-text">Every project starts with a conversation. Write to Mundi Opus for any questions or suggestions for the channel and the community. I will try and answer as much as I can — but be sure that every message will be read.</p>
+    </section>
+
+    <!-- CONTACT LIST -->
+    <section class="contact-section">
+      <div class="contact-grid">
+
+        <!-- YouTube -->
+        <a class="contact-row contact-row--yt reveal" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="contact-row-body">
+            <span class="contact-row-platform">YouTube</span>
+            <span class="contact-row-handle">@mundiopus</span>
+          </div>
+          <span class="contact-row-arrow">→</span>
+        </a>
+
+        <!-- X / Twitter -->
+        <a class="contact-row contact-row--x reveal d1" href="https://x.com/MundiOpus" target="_blank" rel="noopener noreferrer">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div class="contact-row-body">
+            <span class="contact-row-platform">X (Twitter)</span>
+            <span class="contact-row-handle">@MundiOpus</span>
+          </div>
+          <span class="contact-row-arrow">→</span>
+        </a>
+
+        <!-- Store -->
+        <a class="contact-row contact-row--gum reveal d2" href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.948c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></svg>
+          </div>
+          <div class="contact-row-body">
+            <span class="contact-row-platform">Store</span>
+            <span class="contact-row-handle">Gumroad — Mundi Opus</span>
+          </div>
+          <span class="contact-row-arrow">→</span>
+        </a>
+
+        <!-- Email -->
+        <div class="contact-row contact-row--email reveal d3">
+          <div class="contact-row-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          </div>
+          <div class="contact-row-body">
+            <span class="contact-row-platform">Email</span>
+            <span class="contact-row-handle">mundiopuscontact@gmail.com</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ORNAMENT -->
+    <div class="orn reveal">
+      <div class="orn-line"></div>
+      <span class="orn-glyph">✦ ✦ ✦</span>
+      <div class="orn-line r"></div>
+    </div>
+
+  </div>
+
+  <footer>mundiopus.com</footer>
+
+  <script>
+    const progressBar = document.getElementById('scrollProgress');
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    let pending = false;
+    window.addEventListener('scroll', () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        const sy    = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.transform = `scaleX(${total > 0 ? sy / total : 0})`;
+        pending = false;
+      });
+    }, { passive: true });
+  </script>
+
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if ('ontouchstart' in window) return;
+      const EASE = 0.09;
+      let target = window.scrollY, current = window.scrollY, raf = null;
+      function step() {
+        const gap = target - current;
+        if (Math.abs(gap) < 0.5) { current = target; window.scrollTo(0, current); raf = null; return; }
+        current += gap * EASE;
+        window.scrollTo(0, current);
+        raf = requestAnimationFrame(step);
+      }
+      window.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
+        target = Math.max(0, Math.min(target + delta, document.documentElement.scrollHeight - window.innerHeight));
+        if (!raf) raf = requestAnimationFrame(step);
+      }, { passive: false });
+      window.addEventListener('scroll', function () { if (!raf) target = current = window.scrollY; }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
