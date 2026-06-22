@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Mundi Opus</title>
+  <link rel="icon" href="cropped_circle_image.png" type="image/png" />
+  <link rel="apple-touch-icon" href="cropped_circle_image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Playfair+Display+SC:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f0e9d8;
+      --bg-warm:  #e8dfc8;
+      --ink:      #16100a;
+      --ink-mid:  #4a3820;
+      --ink-faint:#8a7256;
+      --gold:     #7a5c20;
+      --gold-pale:#b8964a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--ink);
+      overflow-x: hidden;
+      padding-top: 72px;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 50% 36%, var(--bg) 0%, var(--bg-warm) 58%, #d9cfb8 100%);
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: flex-start; gap: 3rem;
+      padding: 1rem 2.4rem; height: 72px;
+      background: rgba(240,233,216,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(122,92,32,.15);
+    }
+    .nav-link {
+      font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mid); text-decoration: none; font-weight: 600;
+      transition: color .3s; font-family: 'Cormorant Garamond', serif;
+    }
+    .nav-link:hover { color: var(--gold); }
+    .nav-sep { font-size: .65rem; color: var(--gold-pale); }
+
+    .page { position: relative; z-index: 1; }
+
+    /* ── HERO ── */
+    .privacy-hero {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 4rem 2rem 2.4rem;
+      text-align: center;
+    }
+    .privacy-eyebrow {
+      font-size: .76rem; letter-spacing: .52em; text-transform: uppercase;
+      color: var(--ink-faint); margin-bottom: 1.4rem;
+    }
+    .privacy-title {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 900; letter-spacing: .14em; color: var(--ink); line-height: 1;
+      margin-bottom: 1.6rem;
+    }
+    .divider {
+      display: flex; align-items: center; gap: .9rem;
+      width: min(320px, 80vw); margin-bottom: 0;
+    }
+    .divider-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .divider-star {
+      font-size: .9rem; color: var(--gold); line-height: 1;
+    }
+
+    /* ── CONTENT ── */
+    .privacy-content {
+      max-width: 680px;
+      margin: 3rem auto 5rem;
+      padding: 0 2rem;
+    }
+    .privacy-content h2 {
+      font-family: 'Playfair Display SC', serif;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      color: var(--ink);
+      margin-top: 2.4rem;
+      margin-bottom: .7rem;
+    }
+    .privacy-content p, .privacy-content li {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink-mid);
+      margin-bottom: .6rem;
+    }
+    .privacy-content ul {
+      padding-left: 1.4rem;
+      margin-bottom: .6rem;
+    }
+    .privacy-content a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s;
+    }
+    .privacy-content a:hover { border-color: var(--gold); }
+    .privacy-updated {
+      font-size: .82rem;
+      letter-spacing: .12em;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); text-align: center; }
+
+    @media (max-width: 600px) {
+      .site-nav { gap: 1.5rem; padding: 1rem 1.2rem; }
+      .nav-link { font-size: .82rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a class="nav-link" href="index.html">Home</a>
+    <span class="nav-sep">✦</span>
+    <a class="nav-link" href="about.html">About</a>
+    <span class="nav-sep">✦</span>
+    <a class="nav-link" href="contact.html">Contact</a>
+  </nav>
+
+  <div class="page">
+
+    <header class="privacy-hero">
+      <p class="privacy-eyebrow">Legal</p>
+      <h1 class="privacy-title">Privacy Policy</h1>
+      <div class="divider">
+        <span class="divider-line"></span>
+        <span class="divider-star">✦</span>
+        <span class="divider-line"></span>
+      </div>
+    </header>
+
+    <main class="privacy-content">
+
+      <p class="privacy-updated">Last updated: June 2025</p>
+
+      <p>This Privacy Policy explains how Mundi Opus ("we", "us") collects, uses, and protects personal data submitted through the newsletter subscription form on <a href="https://mundiopus.com">mundiopus.com</a>, in accordance with the General Data Protection Regulation (GDPR).</p>
+
+      <h2>What data we collect</h2>
+      <p>When you subscribe to the Mundi Opus newsletter, we collect only your <strong>email address</strong> and a record that you gave consent to receive emails.</p>
+
+      <h2>Why we collect it</h2>
+      <p>Your email address is collected solely to send you occasional updates from Mundi Opus: new video announcements, behind-the-scenes content, and channel news. We will never use it for any other purpose.</p>
+
+      <h2>Legal basis (GDPR Article 6)</h2>
+      <p>We process your data based on your <strong>freely given, informed, and explicit consent</strong> (Article 6(1)(a) GDPR), which you provide by ticking the checkbox and submitting the form.</p>
+
+      <h2>How your data is stored</h2>
+      <p>Submissions are processed by <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a>, a third-party form service that acts as a data processor on our behalf. Formspree stores your email securely and does not sell or share it with any third parties. You can read Formspree's privacy policy at <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">formspree.io/legal/privacy-policy</a>.</p>
+
+      <h2>Who has access to your data</h2>
+      <p>Only the owner of the Mundi Opus channel has access to your email address through the Formspree dashboard. Your data is never sold, rented, or shared with any third party for marketing or any other purpose.</p>
+
+      <h2>How long we keep your data</h2>
+      <p>We keep your email address for as long as you remain subscribed. If you unsubscribe or request deletion, your data will be removed promptly.</p>
+
+      <h2>Your rights</h2>
+      <p>Under GDPR, you have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of the data we hold about you</li>
+        <li><strong>Erasure</strong> — request that we delete your data at any time</li>
+        <li><strong>Withdraw consent</strong> — unsubscribe at any time with no consequences</li>
+        <li><strong>Lodge a complaint</strong> — with the Spanish Data Protection Authority (AEPD) at <a href="https://www.aepd.es" target="_blank" rel="noopener">aepd.es</a></li>
+      </ul>
+
+      <h2>How to unsubscribe or delete your data</h2>
+      <p>To unsubscribe or request deletion of your data, send an email to <a href="mailto:mundiopuscontact@gmail.com">mundiopuscontact@gmail.com</a> and we will process your request within 30 days.</p>
+
+      <h2>Contact</h2>
+      <p>For any questions about this Privacy Policy, contact us at <a href="mailto:mundiopuscontact@gmail.com">mundiopuscontact@gmail.com</a>.</p>
+
+    </main>
+
+  </div>
+
+  <footer>mundiopus.com</footer>
+
+</body>
+</html>
