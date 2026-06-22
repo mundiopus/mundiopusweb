@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Playfair+Display+SC:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="high-1777047088.jpg" />
   <style>
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -242,7 +243,7 @@
     .btn-store:hover { color: var(--bg); animation: none; box-shadow: 0 4px 18px rgba(122,92,32,.35); }
 
     /* ── CONTACT ── */
-    .contact-section { padding: 1.5rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; }
+    .contact-section { padding: 1.5rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; content-visibility: auto; contain-intrinsic-size: 0 200px; }
     .wip-title {
       font-family: 'Playfair Display SC', serif;
       font-size: clamp(1.8rem, 5vw, 3rem);
@@ -255,7 +256,7 @@
     .contact-text a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
     /* ── SPONSOR ── */
-    .sponsor-section { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; }
+    .sponsor-section { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; content-visibility: auto; contain-intrinsic-size: 0 280px; }
     .sponsor-label { font-family: 'Cormorant Garamond', serif; font-size: .8rem; letter-spacing: .38em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 1.6rem; }
     .sponsor-logo-wrap { padding: 1rem 2rem; border: 1px solid rgba(122,92,32,.22); background: rgba(255,255,255,.5); margin-bottom: 1.6rem; }
     .sponsor-logo-wrap img { height: 54px; width: auto; display: block; }
@@ -430,7 +431,7 @@
     <section class="hero">
       <a href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer" style="display:contents;">
       <div class="logo-wrapper" style="cursor:pointer;">
-        <img src="high-1777047088.jpg" alt="Mundi Opus" />
+        <img src="high-1777047088.jpg" alt="Mundi Opus" decoding="async" fetchpriority="high" />
       </div>
       </a>
       <h1 class="title">Mundi Opus</h1>
@@ -526,7 +527,7 @@
     <section class="sponsor-section reveal">
       <p class="sponsor-label">Sponsored by</p>
       <div class="sponsor-logo-wrap">
-        <img src="polymail.jpg" alt="Polymail" />
+        <img src="polymail.jpg" alt="Polymail" loading="lazy" decoding="async" />
       </div>
       <div class="sponsor-actions">
         <a class="sponsor-cta" href="https://app.polymail.io/login?utm_campaign=polymail_affiliates_2026&utm_medium=referral&utm_source=affiliate&via=MundiOpus" target="_blank" rel="noopener noreferrer">
