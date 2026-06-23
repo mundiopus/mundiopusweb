@@ -256,17 +256,40 @@
     .contact-text a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
     /* ── SPONSOR ── */
-    .sponsor-section { padding: 2rem 2rem 3rem; display: flex; flex-direction: column; align-items: center; content-visibility: auto; contain-intrinsic-size: 0 280px; }
-    .sponsor-label { font-family: 'Cormorant Garamond', serif; font-size: .8rem; letter-spacing: .38em; text-transform: uppercase; color: var(--ink-mid); margin-bottom: 1.6rem; }
-    .sponsor-logo-wrap { padding: 1rem 2rem; border: 1px solid rgba(122,92,32,.22); background: rgba(255,255,255,.5); margin-bottom: 1.6rem; }
-    .sponsor-logo-wrap img { height: 54px; width: auto; display: block; }
-    .sponsor-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 0; }
+    .sponsor-section {
+      padding: 2.6rem 2rem 3rem; display: flex; flex-direction: column; align-items: center;
+      background: var(--bg-warm); border-top: 1px solid rgba(122,92,32,.15); border-bottom: 1px solid rgba(122,92,32,.15);
+      content-visibility: auto; contain-intrinsic-size: 0 360px;
+    }
+    .sponsor-top { display: flex; align-items: center; justify-content: center; gap: 1.4rem; margin-bottom: 2.2rem; flex-wrap: wrap; }
+    .sponsor-label { font-family: 'Cormorant Garamond', serif; font-size: .75rem; letter-spacing: .42em; text-transform: uppercase; color: var(--ink-faint); }
+    .sponsor-sep { width: 1px; height: 24px; background: rgba(122,92,32,.3); }
+    .sponsor-logo-wrap { padding: .6rem 1.4rem; border: 1px solid rgba(122,92,32,.22); background: rgba(255,255,255,.6); }
+    .sponsor-logo-wrap img { height: 52px; width: auto; display: block; }
+    .sponsor-headline {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(1.1rem, 3vw, 1.9rem);
+      font-weight: 900; letter-spacing: .1em; color: var(--ink);
+      text-align: center; max-width: 560px; line-height: 1.25; margin-bottom: 1.4rem;
+    }
+    .sponsor-features { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem 2rem; margin-bottom: 1.8rem; }
+    .sponsor-feature { display: flex; align-items: center; gap: .5rem; }
+    .sponsor-feature-icon { font-size: .55rem; color: var(--gold); }
+    .sponsor-feature-label { font-family: 'Cormorant Garamond', serif; font-size: .88rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-mid); }
+    .sponsor-quote {
+      max-width: 520px; text-align: center; margin-bottom: 2.4rem;
+      padding: 1.4rem 1.8rem; border-left: 2px solid var(--gold); border-right: 2px solid var(--gold);
+    }
+    .sponsor-quote-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--ink-mid); line-height: 1.7; margin-bottom: .5rem; }
+    .sponsor-quote-author { font-family: 'Cormorant Garamond', serif; font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-faint); }
+    .sponsor-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
     .sponsor-cta {
       display: inline-flex; align-items: center; gap: .7rem;
       padding: 1.1rem 2.8rem; border: 1px solid var(--gold); color: var(--ink);
       text-decoration: none; font-size: clamp(1rem, 2vw, 1.1rem);
       letter-spacing: .26em; text-transform: uppercase; font-weight: 600;
       background: transparent; position: relative; overflow: hidden; transition: color .34s;
+      font-family: 'Cormorant Garamond', serif;
     }
     .sponsor-cta::before { content: ''; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .34s cubic-bezier(.22,1,.36,1); z-index: 0; }
     .sponsor-cta:hover::before { transform: scaleX(1); }
@@ -280,6 +303,10 @@
       font-family: 'Cormorant Garamond', serif; font-weight: 600;
     }
     .sponsor-info-btn:hover { border-color: var(--gold); color: var(--ink); }
+    .sponsor-cta--gold { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+    .sponsor-cta--gold::before { background: #5a3d00; }
+    .sponsor-cta--gold:hover { color: var(--bg); }
+    .sponsor-cta--gold em { font-style: normal; font-size: 1.08em; letter-spacing: .32em; }
     /* ── POLYMAIL MODAL ── */
     .pm-overlay {
       position: fixed; inset: 0; z-index: 200;
@@ -400,14 +427,61 @@
     .nav-full { display: inline; }
     .nav-short { display: none; }
 
+    /* ── CONNECT HEADING ── */
+    .links-heading {
+      font-family: 'Playfair Display SC', serif;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      font-weight: 900; letter-spacing: .18em;
+      color: var(--ink); margin-bottom: .4rem;
+    }
+
     /* ── MOBILE ── */
     @media (max-width: 600px) {
+      /* Nav */
       .site-nav { gap: .75rem; padding: 1rem; justify-content: center; }
       .nav-link  { font-size: .78rem; letter-spacing: .1em; }
       .nav-full  { display: none; }
       .nav-short { display: inline; }
-      .btn { padding: 1rem 2rem; }
-      .pm-modal { padding: 2rem 1.6rem 1.8rem; }
+
+      /* Hero */
+      .hero { padding: 1.6rem 1rem 1rem; }
+      .hero-quote { font-size: 1.05rem; max-width: 90vw; }
+      .divider { width: 90vw; }
+
+      /* Newsletter */
+      .newsletter { padding: 2rem 1rem 2rem; }
+      .newsletter-title { font-size: 1.6rem; }
+      .newsletter-form { flex-direction: column; align-items: stretch; width: min(340px, 90vw); margin: 0 auto; }
+      .newsletter-form input[type="email"] { width: 100%; border-right: 1.5px solid var(--ink-faint); border-bottom: none; font-size: 1.1rem; }
+      .newsletter-form input[type="email"]:focus { border-color: var(--gold); }
+      .newsletter-form button { width: 100%; padding: .9rem 1rem; font-size: 1rem; }
+      .newsletter-consent { max-width: 90vw; }
+
+      /* Connect */
+      .links-section { padding: 1.5rem 1rem 2rem; }
+      .links-card { width: 92vw; padding: 1.6rem 1.2rem; }
+      .links-row { gap: .6rem; }
+      .btn { padding: .9rem 1.4rem; font-size: .8rem; }
+      .btn-store { width: 100%; justify-content: center; padding: 1.2rem 1rem; font-size: 1rem; }
+      .btn-store-label { font-size: .7rem; }
+
+      /* Sponsor */
+      .sponsor-section { padding: 2.5rem 1.2rem 3rem; }
+      .sponsor-quote { padding: 1rem 1.2rem; }
+      .sponsor-features { gap: .8rem 1.4rem; }
+      .sponsor-actions { flex-direction: column; align-items: stretch; width: 90vw; }
+      .sponsor-cta, .sponsor-info-btn { justify-content: center; padding: 1rem 1.4rem; font-size: .88rem; }
+
+      /* Contact */
+      .contact-section { padding: 1rem 1rem 2rem; }
+
+      /* Modals */
+      .pm-modal { padding: 2rem 1.4rem 1.8rem; }
+      .store-modal { padding: 2.2rem 1.4rem 1.8rem; }
+      .store-modal-btn { width: 100%; justify-content: center; }
+
+      /* Ornament */
+      .orn { padding: .6rem 1rem; }
     }
 
   </style>
@@ -495,7 +569,7 @@
 
     <!-- LINKS -->
     <section class="links-section">
-      <p class="eyebrow reveal">Connect</p>
+      <p class="links-heading reveal">Connect</p>
       <div class="links-card reveal">
         <div class="links-row">
           <a class="btn" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">
@@ -525,13 +599,23 @@
 
     <!-- SPONSOR -->
     <section class="sponsor-section reveal">
-      <p class="sponsor-label">Sponsored by</p>
-      <div class="sponsor-logo-wrap">
-        <img src="polymail.jpg" alt="Polymail" loading="lazy" decoding="async" />
+      <div class="sponsor-top">
+        <span class="sponsor-label">Sponsored by</span>
+        <span class="sponsor-sep"></span>
+        <div class="sponsor-logo-wrap">
+          <img src="polymail.jpg" alt="Polymail" loading="lazy" decoding="async" />
+        </div>
+      </div>
+      <h2 class="sponsor-headline">The Power Inbox for People Who Move Fast</h2>
+      <div class="sponsor-features">
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Email Tracking</span></div>
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Follow-ups</span></div>
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Templates</span></div>
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Scheduling</span></div>
       </div>
       <div class="sponsor-actions">
-        <a class="sponsor-cta" href="https://app.polymail.io/login?utm_campaign=polymail_affiliates_2026&utm_medium=referral&utm_source=affiliate&via=MundiOpus" target="_blank" rel="noopener noreferrer">
-          <span>Try Polymail</span>
+        <a class="sponsor-cta sponsor-cta--gold" href="https://app.polymail.io/login?utm_campaign=polymail_affiliates_2026&utm_medium=referral&utm_source=affiliate&via=MundiOpus" target="_blank" rel="noopener noreferrer">
+          <span>Try Polymail <em>FREE</em> →</span>
         </a>
         <button class="sponsor-info-btn" id="pmInfoBtn">More Info</button>
       </div>
