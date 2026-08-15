@@ -421,6 +421,13 @@
     .newsletter-consent label { font-family: 'Cormorant Garamond', serif; font-size: .88rem; color: var(--ink-mid); letter-spacing: .02em; text-align: left; line-height: 1.5; cursor: pointer; }
     .newsletter-consent label a { color: var(--gold); text-underline-offset: 2px; }
 
+    /* ── AFFILIATE ── */
+    .affiliate-section {
+      padding: 2.6rem 2rem 3rem; display: flex; flex-direction: column; align-items: center;
+      background: var(--bg); border-top: 1px solid rgba(122,92,32,.15); border-bottom: 1px solid rgba(122,92,32,.15);
+      content-visibility: auto; contain-intrinsic-size: 0 320px;
+    }
+
     /* ── FOOTER ── */
     footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
 
@@ -468,6 +475,9 @@
 
       /* Sponsor */
       .sponsor-section { padding: 2.5rem 1.2rem 3rem; }
+
+      /* Affiliate */
+      .affiliate-section { padding: 2.5rem 1.2rem 3rem; }
       .sponsor-quote { padding: 1rem 1.2rem; }
       .sponsor-features { gap: .8rem 1.4rem; }
       .sponsor-actions { flex-direction: column; align-items: stretch; width: 90vw; }
@@ -619,6 +629,26 @@
           <span>Try Polymail <em>FREE</em> →</span>
         </a>
         <button class="sponsor-info-btn" id="pmInfoBtn">More Info</button>
+      </div>
+    </section>
+
+    <!-- AFFILIATE -->
+    <section class="affiliate-section reveal">
+      <p class="eyebrow">Earn With Us</p>
+      <h2 class="sponsor-headline">Promote Mundi Opus.<br>Earn Real Money.</h2>
+      <div class="sponsor-features">
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Commission per sale</span></div>
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Unique referral link</span></div>
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Monthly payouts</span></div>
+        <div class="sponsor-feature"><span class="sponsor-feature-icon">✦</span><span class="sponsor-feature-label">Real-time stats</span></div>
+      </div>
+      <div class="sponsor-quote">
+        <p class="sponsor-quote-text">Share the Mundi Opus store with your audience and earn a commission on every sale you refer. No upfront costs. No minimums. Just a link.</p>
+      </div>
+      <div class="sponsor-actions">
+        <a class="sponsor-cta sponsor-cta--gold" href="https://mundiopus.gumroad.com/affiliates" target="_blank" rel="noopener noreferrer">
+          <span>Become an Affiliate <em>→</em></span>
+        </a>
       </div>
     </section>
 
