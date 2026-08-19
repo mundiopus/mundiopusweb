@@ -701,7 +701,7 @@
       track.innerHTML += track.innerHTML;
     })();
 
-    const APPS_SCRIPT_URL = 'https://formspree.io/f/xykqylgg';
+    const NEWSLETTER_ENDPOINT = 'https://newsletter.mundiopus.com';
 
     document.getElementById('newsletterForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -717,10 +717,11 @@
       msg.style.color = 'var(--gold)';
       btn.textContent = 'Sending…';
       btn.disabled = true;
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('consent', 'yes');
-      fetch(APPS_SCRIPT_URL, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+      fetch(NEWSLETTER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email: email, updateEnabled: true })
+      })
         .then(() => { msg.textContent = 'Welcome to the community.'; document.getElementById('newsletterEmail').value = ''; document.getElementById('newsletterConsent').checked = false; })
         .catch(() => { msg.style.color = 'var(--ink-mid)'; msg.textContent = 'Something went wrong. Try again.'; })
         .finally(() => { btn.textContent = 'Join'; btn.disabled = false; });
