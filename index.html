@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mundi Opus</title>
-  <link rel="icon" href="cropped_circle_image.png" type="image/png" />
-  <link rel="apple-touch-icon" href="cropped_circle_image.png" />
-  <meta property="og:image" content="https://mundiopus.com/cropped_circle_image.png" />
+  <link rel="icon" href="img/cropped_circle_image.png" type="image/png" />
+  <link rel="apple-touch-icon" href="img/cropped_circle_image.png" />
+  <meta property="og:image" content="https://mundiopus.com/img/cropped_circle_image.png" />
   <meta property="og:image:width" content="800" />
   <meta property="og:image:height" content="800" />
   <meta property="og:title" content="Mundi Opus" />
@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Playfair+Display+SC:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="cropped_circle_image.png" />
+  <link rel="preload" as="image" href="img/cropped_circle_image.png" />
   <style>
     /* ========================================================
        MUNDI OPUS · Editorial Warm-Parchment
@@ -51,7 +51,7 @@
       background: var(--bg);
       color: var(--ink);
       font-family: var(--serif-body);
-      font-size: clamp(13px, 0.9vw, 15px);
+      font-size: clamp(15px, 1.1vw, 17px);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
@@ -88,7 +88,7 @@
     }
     .nav-brand-mark {
       width: 26px; height: 26px; border-radius: 50%;
-      background: url('cropped_circle_image.png') center/cover no-repeat;
+      background: url('img/cropped_circle_image.png') center/cover no-repeat;
       box-shadow: 0 0 0 1px var(--gold-pale);
     }
     .nav-brand-name {
@@ -297,6 +297,75 @@
       font-size: .85rem; font-weight: 600; padding-top: .3rem;
     }
 
+    /* ── DUAL SPLIT (playlists + newsletter) ── */
+    .dual-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2.4rem; align-items: stretch;
+    }
+    .playlist-row--stack { grid-template-columns: 1fr; }
+    .dual-col--newsletter {
+      padding: 1.4rem; background: var(--bg-lift);
+      border: 1px solid var(--line); border-radius: 10px;
+    }
+    .dual-col--newsletter .newsletter-form { flex-direction: column; }
+    .dual-col--newsletter .newsletter-form input[type="email"] {
+      border-right: 1px solid var(--line-strong); border-bottom: none;
+      border-radius: 6px 6px 0 0;
+    }
+    .dual-col--newsletter .newsletter-form button { border-radius: 0 0 6px 6px; }
+    .dual-col--newsletter .newsletter-consent { padding: .7rem .8rem; }
+
+    /* ── STORE ── */
+    .store-card {
+      display: grid; grid-template-columns: 3fr 2fr;
+      gap: 0; align-items: stretch;
+      background: var(--bg-lift);
+      border: 1px solid var(--line-strong);
+      border-radius: 20px; overflow: hidden;
+    }
+    .store-main { overflow: hidden; min-height: 260px; }
+    .store-main img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+    .store-right { display: flex; flex-direction: column; border-left: 1px solid var(--line); }
+    .store-info {
+      padding: 1.4rem 1.6rem 1rem; flex: 1;
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .store-title {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      font-weight: 900; letter-spacing: .05em; color: var(--ink); line-height: 1.2;
+    }
+    .store-desc {
+      font-family: var(--serif-body);
+      font-size: .9rem; color: var(--ink-mid); line-height: 1.55;
+    }
+    .store-features {
+      list-style: none; margin: .1rem 0;
+      display: flex; flex-direction: column; gap: .24rem;
+    }
+    .store-features li {
+      font-family: var(--serif-body); font-size: .86rem; color: var(--ink-mid);
+    }
+    .store-features li::before {
+      content: '—'; color: var(--gold-pale); margin-right: .5rem;
+    }
+    .store-actions { margin-top: auto; padding-top: .7rem; }
+    .store-preview {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px; margin-top: 12px;
+    }
+    .store-preview-item img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+      border-radius: 6px; border: 1px solid var(--line);
+      filter: brightness(.88); transition: filter .3s;
+    }
+    .store-preview-item img:hover { filter: brightness(1); }
+    .store-preview-item p {
+      font-family: var(--serif-body); font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--ink-faint);
+      text-align: center; margin-top: .3rem;
+    }
+
     /* ── NEWSLETTER ── */
     .newsletter {
       padding: clamp(1.4rem, 2.5vw, 2.2rem) 0;
@@ -394,8 +463,7 @@
       color: var(--ink-mid); letter-spacing: .02em;
     }
     .promo-features li::before {
-      content: '✦'; color: var(--gold); margin-right: .55rem;
-      font-size: .7rem; vertical-align: middle;
+      content: '—'; color: var(--gold-pale); margin-right: .55rem;
     }
     .promo-quote {
       font-family: var(--serif-body); font-style: italic;
@@ -449,8 +517,7 @@
       color: var(--ink-mid);
     }
     .modal ul li::before {
-      content: '✦'; color: var(--gold); margin-right: .5rem;
-      font-size: .6rem; vertical-align: middle;
+      content: '—'; color: var(--gold-pale); margin-right: .5rem;
     }
 
     .store-modal { text-align: center; padding: 2.4rem 2rem 2rem; }
@@ -492,6 +559,11 @@
       .playlist-row { grid-template-columns: 1fr; }
       .pl-thumb { width: 120px; }
       .promo-dual { grid-template-columns: 1fr; }
+      .store-card { grid-template-columns: 1fr; }
+      .store-main { min-height: 200px; }
+      .store-right { border-left: none; border-top: 1px solid var(--line); }
+      .dual-split { grid-template-columns: 1fr; }
+      .dual-col--newsletter { position: static; }
     }
 
     @media (max-width: 620px) {
@@ -532,7 +604,7 @@
       <ul class="nav-links">
         <li><a class="nav-link nav-link--active" href="index.html">Home</a></li>
         <li><a class="nav-link" href="#playlists">Playlists</a></li>
-        <li><a class="nav-link" href="#community">Newsletter</a></li>
+        <li><a class="nav-link" href="#store">Store</a></li>
         <li><a class="nav-link" href="about.html">About</a></li>
         <li><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
@@ -558,7 +630,7 @@
           </div>
         </div>
         <a class="hero-mark" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer" aria-label="Mundi Opus YouTube channel">
-          <img src="cropped_circle_image.png" alt="Mundi Opus" decoding="async" fetchpriority="high" />
+          <img src="img/cropped_circle_image.png" alt="Mundi Opus" decoding="async" fetchpriority="high" />
         </a>
       </div>
     </section>
@@ -566,93 +638,97 @@
     <!-- TICKER -->
     <div class="ticker-band" aria-hidden="true">
       <div class="ticker-track" id="tickerTrack">
-        <span>{ } <em>✦</em> [ ] <em>✦</em> ( ) <em>✦</em> // <em>✦</em> Mundi Opus <em>✦</em></span>
-        <span>{ } <em>✦</em> [ ] <em>✦</em> ( ) <em>✦</em> // <em>✦</em> Mundi Opus <em>✦</em></span>
-        <span>{ } <em>✦</em> [ ] <em>✦</em> ( ) <em>✦</em> // <em>✦</em> Mundi Opus <em>✦</em></span>
-        <span>{ } <em>✦</em> [ ] <em>✦</em> ( ) <em>✦</em> // <em>✦</em> Mundi Opus <em>✦</em></span>
+        <span>Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create ·</span>
+        <span>Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create ·</span>
       </div>
     </div>
 
-    <!-- PLAYLISTS -->
-    <section class="section" id="playlists">
+    <!-- STORE -->
+    <section class="section" id="store">
       <div class="container">
         <div class="section-header">
-          <h3 class="section-title">Playlists</h3>
-          <a class="section-link" href="https://www.youtube.com/@mundiopus/playlists" target="_blank" rel="noopener noreferrer">
-            All playlists →
-          </a>
+          <h3 class="section-title">From the Channel</h3>
+          <a class="section-link" href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">Visit store →</a>
         </div>
-        <div class="playlist-row">
-          <a class="playlist-card playlist-card--gold" href="https://www.youtube.com/playlist?list=PL70T8j-ymdANGqYxN4XglRuVHsxwttVTI" target="_blank" rel="noopener noreferrer">
-            <div class="pl-thumb">
-              <img src="https://img.youtube.com/vi/LYigiwbaX_U/mqdefault.jpg" alt="Movies Soundtrack Working Music" loading="lazy" />
-              <span class="pl-play" aria-hidden="true">▶</span>
+        <div class="store-card">
+          <div class="store-main">
+            <img src="img/whatsapp-1.jpeg" alt="Notion Template — Project Dashboard" loading="lazy" />
+          </div>
+          <div class="store-right">
+            <div class="store-info">
+              <span class="label">Notion Template</span>
+              <h3 class="store-title">Mundi Opus Workspace v1.0</h3>
+              <p class="store-desc">A Notion workspace for projects, focus sessions with the videos, and task tracking.</p>
+              <ul class="store-features">
+                <li>Project dashboard</li>
+                <li>Focus mode with Mundi Opus videos</li>
+                <li>Task manager</li>
+                <li>Study session counter</li>
+              </ul>
+              <div class="store-actions">
+                <a class="btn btn--gold" href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">
+                  <span>Get the Template</span><span>→</span>
+                </a>
+              </div>
             </div>
-            <div class="pl-info">
-              <span class="label">Playlist 01</span>
-              <h4>Movies Soundtrack</h4>
-              <p>Film scores. Put one on and get to work.</p>
-              <span class="playlist-arrow">→</span>
-            </div>
-          </a>
-          <a class="playlist-card" href="https://www.youtube.com/playlist?list=PL70T8j-ymdAPZJcofPBNTXkLQMIhNxwql" target="_blank" rel="noopener noreferrer">
-            <div class="pl-thumb">
-              <img src="https://img.youtube.com/vi/bSkzWpcWz-o/mqdefault.jpg" alt="Finance Working Music" loading="lazy" />
-              <span class="pl-play" aria-hidden="true">▶</span>
-            </div>
-            <div class="pl-info">
-              <span class="label">Playlist 02</span>
-              <h4>Finance Working Music</h4>
-              <p>Clean, tight tracks for when the numbers matter.</p>
-              <span class="playlist-arrow">→</span>
-            </div>
-          </a>
-          <a class="playlist-card" href="https://www.youtube.com/playlist?list=PL70T8j-ymdAOp63wDdLDDYClqePX_suWa" target="_blank" rel="noopener noreferrer">
-            <div class="pl-thumb">
-              <img src="https://img.youtube.com/vi/1u_LR75-p_w/mqdefault.jpg" alt="Coding Working Music" loading="lazy" />
-              <span class="pl-play" aria-hidden="true">▶</span>
-            </div>
-            <div class="pl-info">
-              <span class="label">Playlist 03</span>
-              <h4>Coding Working Music</h4>
-              <p>No lyrics. No distractions. Good for long sessions.</p>
-              <span class="playlist-arrow">→</span>
-            </div>
-          </a>
-          <a class="playlist-card" href="https://www.youtube.com/playlist?list=PL70T8j-ymdAPms2awg3jeMRoYWoROEmZO" target="_blank" rel="noopener noreferrer">
-            <div class="pl-thumb">
-              <img src="https://img.youtube.com/vi/K9HmppjRsoc/mqdefault.jpg" alt="Space Working Music" loading="lazy" />
-              <span class="pl-play" aria-hidden="true">▶</span>
-            </div>
-            <div class="pl-info">
-              <span class="label">Playlist 04</span>
-              <h4>Space Working Music</h4>
-              <p>Open, slow, and wide. Good for hard problems.</p>
-              <span class="playlist-arrow">→</span>
-            </div>
-          </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- NEWSLETTER -->
-    <section class="newsletter" id="community">
+    <!-- PLAYLISTS + NEWSLETTER -->
+    <section class="section" id="playlists">
       <div class="container">
-        <span class="label">The Community</span>
-        <h2>Join Mundi Opus</h2>
-        <p class="newsletter-desc">New videos, behind-the-scenes, and updates. Straight to your inbox.</p>
-        <form class="newsletter-form" id="newsletterForm">
-          <input type="email" name="email" id="newsletterEmail" placeholder="your@email.com" required />
-          <button type="submit">Join</button>
-        </form>
-        <div class="newsletter-consent">
-          <input type="checkbox" id="newsletterConsent" required />
-          <label for="newsletterConsent">
-            I agree to receive occasional emails from Mundi Opus (new videos, updates, behind-the-scenes).
-            I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a>.
-          </label>
+        <div class="dual-split">
+
+          <!-- Playlists -->
+          <div class="dual-col">
+            <div class="section-header">
+              <h3 class="section-title">Playlists</h3>
+              <a class="section-link" href="https://www.youtube.com/@mundiopus/playlists" target="_blank" rel="noopener noreferrer">All →</a>
+            </div>
+            <div class="playlist-row playlist-row--stack">
+              <a class="playlist-card playlist-card--gold" href="https://www.youtube.com/playlist?list=PL70T8j-ymdANGqYxN4XglRuVHsxwttVTI" target="_blank" rel="noopener noreferrer">
+                <div class="pl-thumb"><img src="https://img.youtube.com/vi/LYigiwbaX_U/mqdefault.jpg" alt="Movies Soundtrack" loading="lazy" /><span class="pl-play" aria-hidden="true">▶</span></div>
+                <div class="pl-info"><span class="label">Playlist 01</span><h4>Movies Soundtrack</h4><p>Film scores. Put one on and get to work.</p><span class="playlist-arrow">→</span></div>
+              </a>
+              <a class="playlist-card" href="https://www.youtube.com/playlist?list=PL70T8j-ymdAPZJcofPBNTXkLQMIhNxwql" target="_blank" rel="noopener noreferrer">
+                <div class="pl-thumb"><img src="https://img.youtube.com/vi/bSkzWpcWz-o/mqdefault.jpg" alt="Finance Working Music" loading="lazy" /><span class="pl-play" aria-hidden="true">▶</span></div>
+                <div class="pl-info"><span class="label">Playlist 02</span><h4>Finance Working Music</h4><p>Clean, tight tracks for when the numbers matter.</p><span class="playlist-arrow">→</span></div>
+              </a>
+              <a class="playlist-card" href="https://www.youtube.com/playlist?list=PL70T8j-ymdAOp63wDdLDDYClqePX_suWa" target="_blank" rel="noopener noreferrer">
+                <div class="pl-thumb"><img src="https://img.youtube.com/vi/1u_LR75-p_w/mqdefault.jpg" alt="Coding Working Music" loading="lazy" /><span class="pl-play" aria-hidden="true">▶</span></div>
+                <div class="pl-info"><span class="label">Playlist 03</span><h4>Coding Working Music</h4><p>No lyrics. No distractions. Good for long sessions.</p><span class="playlist-arrow">→</span></div>
+              </a>
+              <a class="playlist-card" href="https://www.youtube.com/playlist?list=PL70T8j-ymdAPms2awg3jeMRoYWoROEmZO" target="_blank" rel="noopener noreferrer">
+                <div class="pl-thumb"><img src="https://img.youtube.com/vi/K9HmppjRsoc/mqdefault.jpg" alt="Space Working Music" loading="lazy" /><span class="pl-play" aria-hidden="true">▶</span></div>
+                <div class="pl-info"><span class="label">Playlist 04</span><h4>Space Working Music</h4><p>Open, slow, and wide. Good for hard problems.</p><span class="playlist-arrow">→</span></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="dual-col dual-col--newsletter" id="community">
+            <div class="section-header">
+              <h3 class="section-title">Join Mundi Opus</h3>
+            </div>
+            <span class="label" style="display:block;margin-bottom:.8rem;">The Community</span>
+            <p class="newsletter-desc" style="margin:0 0 1.2rem;text-align:left;max-width:none;">New videos, behind-the-scenes, and updates. Straight to your inbox.</p>
+            <form class="newsletter-form" id="newsletterForm" style="max-width:none;justify-content:flex-start;">
+              <input type="email" name="email" id="newsletterEmail" placeholder="your@email.com" required />
+              <button type="submit">Join</button>
+            </form>
+            <div class="newsletter-consent" style="max-width:none;">
+              <input type="checkbox" id="newsletterConsent" required />
+              <label for="newsletterConsent">
+                I agree to receive occasional emails from Mundi Opus (new videos, updates, behind-the-scenes).
+                I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a>.
+              </label>
+            </div>
+            <p class="newsletter-msg" id="newsletterMsg"></p>
+          </div>
+
         </div>
-        <p class="newsletter-msg" id="newsletterMsg"></p>
       </div>
     </section>
 
@@ -663,7 +739,7 @@
           <article class="promo-card">
             <div class="promo-top">
               <span class="label">Sponsored by</span>
-              <div class="promo-logo-wrap"><img src="59a0b45fb4ef790001d61c66_Polymail%20Black.png" alt="Polymail" loading="lazy" /></div>
+              <div class="promo-logo-wrap"><img src="img/polymail-logo.png" alt="Polymail" loading="lazy" /></div>
             </div>
             <h3 class="promo-headline">The Power Inbox for People Who Move Fast</h3>
             <ul class="promo-features">
@@ -691,10 +767,7 @@
               <li>Monthly payouts</li>
               <li>Real-time stats</li>
             </ul>
-            <p class="promo-quote">
-              Share the Mundi Opus store with your audience and earn a commission on every sale you refer.
-              No upfront costs. No minimums. Just a link.
-            </p>
+            <p class="promo-quote">Share the link. Earn a commission on every sale. No upfront costs.</p>
             <div class="promo-actions">
               <a class="btn btn--gold" href="https://mundiopus.gumroad.com/affiliates" target="_blank" rel="noopener noreferrer">
                 <span>Become an Affiliate</span>
@@ -724,7 +797,7 @@
   <div class="modal-overlay" id="pmOverlay">
     <div class="modal">
       <button class="modal-close" id="pmClose" aria-label="Close">✕</button>
-      <img class="modal-logo" src="59a0b45fb4ef790001d61c66_Polymail%20Black.png" alt="Polymail" />
+      <img class="modal-logo" src="img/polymail-logo.png" alt="Polymail" />
       <h2>Your Inbox, Upgraded</h2>
       <p>Polymail is the email client built for people who take their work seriously. Clean interface, powerful tools, zero noise.</p>
       <ul>
@@ -744,9 +817,8 @@
   <div class="modal-overlay" id="storeOverlay">
     <div class="modal store-modal">
       <button class="modal-close" id="storeClose" aria-label="Close">✕</button>
-      <p class="store-modal-stars">✦ ✦ ✦</p>
       <h2>Exclusive Mundi Opus Content</h2>
-      <p class="modal-desc">Guides, templates, and resources made by the channel. Support the project and take something useful home.</p>
+      <p class="modal-desc">Templates and resources from the channel.</p>
       <a class="btn btn--gold" href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">
         <span>Visit the Store</span><span>→</span>
       </a>
