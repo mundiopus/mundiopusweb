@@ -212,17 +212,16 @@
     .ticker-band {
       overflow: hidden; background: var(--bg-warm);
       border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-      padding: .7rem 0;
+      padding: .65rem 0;
     }
     .ticker-track {
-      display: flex; gap: 2.4rem; width: max-content;
-      animation: ticker 26s linear infinite;
-      font-family: var(--serif-body); font-size: .82rem; font-weight: 600;
-      color: var(--gold); letter-spacing: .32em; text-transform: uppercase;
+      display: flex; width: max-content;
+      animation: ticker 38s linear infinite;
+      font-family: var(--serif-body); font-size: .78rem; font-weight: 600;
+      color: var(--gold); letter-spacing: .28em; text-transform: uppercase;
       will-change: transform;
     }
-    .ticker-track span { display: inline-flex; align-items: center; gap: 2.4rem; }
-    .ticker-track em { font-style: normal; color: var(--gold-pale); }
+    .ticker-track span { white-space: nowrap; }
 
     /* ── SECTION BASICS ── */
     .section { padding: clamp(1.2rem, 2vw, 1.8rem) 0; border-bottom: 1px solid var(--line); }
@@ -605,7 +604,6 @@
         <li><a class="nav-link nav-link--active" href="index.html">Home</a></li>
         <li><a class="nav-link" href="#playlists">Playlists</a></li>
         <li><a class="nav-link" href="#store">Store</a></li>
-        <li><a class="nav-link" href="about.html">About</a></li>
         <li><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -626,7 +624,6 @@
             <a class="btn btn--gold" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">
               <span>Watch on YouTube</span><span>→</span>
             </a>
-            <a class="btn" href="about.html"><span>About</span></a>
           </div>
         </div>
         <a class="hero-mark" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer" aria-label="Mundi Opus YouTube channel">
@@ -638,8 +635,7 @@
     <!-- TICKER -->
     <div class="ticker-band" aria-hidden="true">
       <div class="ticker-track" id="tickerTrack">
-        <span>Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create ·</span>
-        <span>Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create ·</span>
+        <span>Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · </span><span>Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · Mundi Opus · Focus · Work · Create · </span>
       </div>
     </div>
 
@@ -787,7 +783,6 @@
       <a href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">YouTube</a>
       <a href="https://x.com/MundiOpus" target="_blank" rel="noopener noreferrer">X</a>
       <a href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">Store</a>
-      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy</a>
     </div>
@@ -840,14 +835,6 @@
       });
     }, { passive: true });
 
-    // ── Seamless ticker (dup so no gap on any screen) ──
-    (function () {
-      const track = document.getElementById('tickerTrack');
-      if (!track) return;
-      while (track.scrollWidth < window.innerWidth * 2) {
-        track.innerHTML += track.innerHTML;
-      }
-    })();
 
     // ── Newsletter (Brevo via Cloudflare Worker — DO NOT CHANGE) ──
     const NEWSLETTER_ENDPOINT = 'https://newsletter.mundiopus.com';

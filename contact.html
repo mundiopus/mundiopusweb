@@ -141,10 +141,10 @@
       display: flex; justify-content: center;
     }
     .contact-intro-text {
-      max-width: 560px;
-      font-size: clamp(1.18rem, 2.6vw, 1.35rem);
-      line-height: 1.9; font-weight: 300; font-style: italic;
-      color: var(--ink-mid); letter-spacing: .02em;
+      max-width: 520px;
+      font-size: clamp(1.3rem, 2.8vw, 1.55rem);
+      line-height: 1.7; font-weight: 600;
+      color: var(--ink-mid); letter-spacing: .01em;
     }
 
     /* ── CONTACT CARDS ── */
@@ -176,13 +176,13 @@
     .contact-row-icon svg { width: 20px; height: 20px; }
     .contact-row-body { flex: 1; text-align: left; }
     .contact-row-platform {
-      font-size: .76rem; letter-spacing: .44em; text-transform: uppercase;
-      color: var(--ink-faint); display: block; margin-bottom: .3rem;
+      font-size: .8rem; letter-spacing: .36em; text-transform: uppercase;
+      color: var(--gold-pale); display: block; margin-bottom: .3rem;
     }
     .contact-row-handle {
       font-family: 'Playfair Display SC', serif;
-      font-size: clamp(1rem, 2.8vw, 1.3rem);
-      font-weight: 700; letter-spacing: .06em; color: var(--ink);
+      font-size: clamp(1.2rem, 3vw, 1.55rem);
+      font-weight: 900; letter-spacing: .06em; color: var(--gold);
       transition: color .25s;
     }
     .contact-row-arrow {
@@ -194,19 +194,11 @@
     .contact-row:hover .contact-row-handle { color: var(--gold); }
     .contact-row:hover .contact-row-arrow { transform: translateX(4px); color: var(--gold); }
 
-    /* ── BRAND COLORS ── */
-    .contact-row--yt  .contact-row-icon { color: #FF0000; border-color: rgba(255,0,0,.22); background: rgba(255,0,0,.05); }
-    .contact-row--x   .contact-row-icon { color: #0f0f0f; border-color: rgba(0,0,0,.18);   background: rgba(0,0,0,.04); }
-    .contact-row--gum .contact-row-icon { color: #e1409a; border-color: rgba(225,64,154,.25); background: rgba(225,64,154,.06); }
-    .contact-row--notion .contact-row-icon { background: #ffffff; border-color: rgba(0,0,0,.14); }
-    .contact-row--notion .contact-row-icon img { width: 22px; height: 22px; object-fit: contain; display: block; }
-    .contact-row--email .contact-row-icon { color: #EA4335; border-color: rgba(234,67,53,.22); background: rgba(234,67,53,.05); }
-
-    /* email row,static, not a link */
+    /* ── ICON COLORS ── */
+    .contact-row-icon { color: var(--gold); border-color: rgba(122,92,32,.25); background: rgba(122,92,32,.05); }
     .contact-row--email { cursor: default; }
-    .contact-row--email:hover .contact-row-icon { background: rgba(234,67,53,.05); color: #EA4335; border-color: rgba(234,67,53,.22); }
-    .contact-row--email:hover .contact-row-handle { color: var(--ink); }
-    .contact-row--email .contact-row-handle { font-family: 'Cormorant Garamond', serif; font-weight: 400; letter-spacing: .04em; font-size: clamp(1rem, 2.6vw, 1.2rem); }
+    .contact-row--email:hover .contact-row-handle { color: var(--gold); }
+    .contact-row--email .contact-row-handle { font-family: 'Cormorant Garamond', serif; font-weight: 700; letter-spacing: .04em; font-size: clamp(1.1rem, 2.6vw, 1.35rem); }
 
     /* ── ORNAMENT ── */
     .orn { display: flex; align-items: center; justify-content: center; gap: 1.1rem; padding: 2rem 3rem 1rem; }
@@ -258,7 +250,6 @@
         <li><a class="nav-link" href="index.html">Home</a></li>
         <li><a class="nav-link" href="index.html#playlists">Playlists</a></li>
         <li><a class="nav-link" href="index.html#store">Store</a></li>
-        <li><a class="nav-link" href="about.html">About</a></li>
         <li><a class="nav-link nav-link--active" href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -270,18 +261,12 @@
 
     <!-- HERO -->
     <section class="contact-hero">
-      <p class="contact-eyebrow">Get in touch</p>
       <h1 class="contact-title">Contact</h1>
-      <div class="divider">
-        <div class="divider-line"></div>
-        <span class="divider-star">✦</span>
-        <div class="divider-line"></div>
-      </div>
     </section>
 
     <!-- INTRO TEXT -->
     <section class="contact-intro reveal fade-only">
-      <p class="contact-intro-text">Every project starts with a conversation. Write to Mundi Opus for any questions or suggestions for the channel and the community. I will try and answer as much as I can, but be sure that every message will be read.</p>
+      <p class="contact-intro-text">Questions, collabs, or just want to say hello? Find me here.</p>
     </section>
 
     <!-- CONTACT LIST -->
@@ -338,12 +323,6 @@
       </div>
     </section>
 
-    <!-- ORNAMENT -->
-    <div class="orn reveal">
-      <div class="orn-line"></div>
-      <span class="orn-glyph">✦ ✦ ✦</span>
-      <div class="orn-line r"></div>
-    </div>
 
   </div>
 
@@ -353,7 +332,6 @@
       <a href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">YouTube</a>
       <a href="https://x.com/MundiOpus" target="_blank" rel="noopener noreferrer">X</a>
       <a href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">Store</a>
-      <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
       <a href="privacy.html">Privacy</a>
     </div>
