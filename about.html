@@ -38,7 +38,7 @@
       color: var(--ink);
       text-align: center;
       overflow-x: hidden;
-      padding-top: 72px;
+      padding-top: 60px;
     }
     body::before {
       content: ''; position: fixed; inset: 0;
@@ -53,27 +53,48 @@
 
     /* ── NAV ── */
     .site-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-      display: flex; align-items: center; justify-content: flex-start; gap: 3rem;
-      padding: 1rem 2.4rem; height: 72px;
-      background: rgba(240,233,216,.92); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(122,92,32,.15);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px;
+      background: rgba(240,233,216,.85);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(122,92,32,.18);
     }
+    .nav-inner {
+      max-width: 1180px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%;
+    }
+    .nav-brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; color: var(--ink); }
+    .nav-brand-mark {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: url('cropped_circle_image.png') center/cover no-repeat;
+      box-shadow: 0 0 0 1px var(--gold-pale);
+    }
+    .nav-brand-name {
+      font-family: 'Playfair Display SC', serif; font-size: .95rem; font-weight: 700;
+      letter-spacing: .16em; color: var(--ink);
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.9rem; list-style: none; padding: 0; margin: 0; }
     .nav-link {
-      font-size: 1.05rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--ink-mid); text-decoration: none; font-weight: 600;
-      transition: color .3s; font-family: 'Cormorant Garamond', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: .88rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--ink-mid); text-decoration: none; transition: color .2s;
     }
-    .nav-link:hover { color: var(--gold); }
-    .nav-link--active { color: var(--gold); }
-    .nav-sep { font-size: .65rem; color: var(--gold-pale); }
+    .nav-link:hover, .nav-link--active { color: var(--gold); }
+    @media (max-width: 620px) {
+      .nav-inner { padding: 0 1.1rem; }
+      .nav-links { gap: 1rem; }
+      .nav-link { font-size: .62rem; letter-spacing: .12em; }
+      .nav-brand-name { font-size: .82rem; letter-spacing: .12em; }
+      .nav-brand-mark { width: 22px; height: 22px; }
+    }
 
     /* ── SCROLL PROGRESS ── */
     .scroll-progress {
-      position: fixed; top: 72px; left: 0;
+      position: fixed; top: 60px; left: 0;
       width: 100%; height: 1px;
       background: linear-gradient(to right, var(--gold), var(--gold-pale), var(--gold));
-      transform: scaleX(0); transform-origin: left; z-index: 100;
+      transform: scaleX(0); transform-origin: left; z-index: 99;
       will-change: transform;
     }
 
@@ -213,19 +234,27 @@
     .btn-icon--filled { fill: currentColor; stroke: none; }
 
     /* ── FOOTER ── */
-    footer { padding: 1.6rem; font-size: .72rem; letter-spacing: .22em; color: var(--ink-faint); text-transform: uppercase; position: relative; z-index: 1; border-top: 1px solid rgba(122,92,32,.1); }
-
-    /* ── NAV SHORT LABEL ── */
-    .nav-full { display: inline; }
-    .nav-short { display: none; }
+    footer {
+      padding: 1.8rem clamp(1.25rem, 5vw, 3rem);
+      max-width: 1180px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: .82rem; font-weight: 600; letter-spacing: .16em;
+      color: var(--ink-faint); text-transform: uppercase;
+      position: relative; z-index: 1;
+      border-top: 1px solid rgba(122,92,32,.18);
+    }
+    .footer-copy { display: inline-flex; align-items: center; gap: .5rem; }
+    .footer-copy .fstar { color: var(--gold); font-size: .7rem; animation: starSpin 20s linear infinite; display: inline-block; }
+    .footer-links { display: flex; gap: 1.3rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--ink-faint); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
 
     /* ── MOBILE ── */
     @media (max-width: 600px) {
-      .site-nav { gap: .75rem; padding: 1rem; justify-content: center; }
-      .nav-link  { font-size: .78rem; letter-spacing: .1em; }
-      .nav-full  { display: none; }
-      .nav-short { display: inline; }
       .btn { padding: 1rem 2rem; }
+      footer { flex-direction: column; align-items: flex-start; }
     }
 
   </style>
@@ -234,11 +263,19 @@
 
   <!-- NAV -->
   <nav class="site-nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <span class="nav-sep">✦</span>
-    <a href="about.html" class="nav-link nav-link--active"><span class="nav-full">What is Mundi Opus</span><span class="nav-short">About</span></a>
-    <span class="nav-sep">✦</span>
-    <a href="contact.html" class="nav-link">Contact</a>
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <span class="nav-brand-mark" aria-hidden="true"></span>
+        <span class="nav-brand-name">Mundi Opus</span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li><a class="nav-link" href="index.html#playlists">Playlists</a></li>
+        <li><a class="nav-link" href="index.html#community">Newsletter</a></li>
+        <li><a class="nav-link nav-link--active" href="about.html">About</a></li>
+        <li><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -319,7 +356,17 @@
 
   </div>
 
-  <footer>mundiopus.com</footer>
+  <footer>
+    <span class="footer-copy">© 2026 Mundi Opus <span class="fstar">✦</span> mundiopus.com</span>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="https://x.com/MundiOpus" target="_blank" rel="noopener noreferrer">X</a>
+      <a href="https://gumroad.com/a/348981651/uzaojs" target="_blank" rel="noopener noreferrer">Store</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
 
   <script>
     const progressBar = document.getElementById('scrollProgress');
