@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found | Mundi Opus</title>
+  <meta name="description" content="This page does not exist. Return to Mundi Opus." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="img/cropped_circle_image.png" type="image/png" />
+  <link rel="apple-touch-icon" href="img/cropped_circle_image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Playfair+Display+SC:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f0e9d8;
+      --bg-warm:   #e8dfc8;
+      --ink:       #16100a;
+      --ink-mid:   #4a3820;
+      --gold:      #7a5c20;
+      --serif:     'Playfair Display SC', Georgia, serif;
+      --serif-body:'Cormorant Garamond', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--serif-body);
+      font-size: clamp(15px, 1.1vw, 17px);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 30%, var(--bg) 0%, var(--bg-warm) 60%, #d9cfb8 100%);
+    }
+
+    .wrap { position: relative; z-index: 1; max-width: 480px; }
+
+    .eyebrow {
+      font-family: var(--serif); font-size: .7rem; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--gold);
+      display: block; margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif); font-size: clamp(5rem, 20vw, 10rem);
+      line-height: 1; color: var(--ink); letter-spacing: -.02em;
+      margin-bottom: .5rem;
+    }
+
+    .sub {
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      color: var(--ink-mid); margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .7rem 1.8rem; border: 1.5px solid var(--gold);
+      font-family: var(--serif); font-size: .75rem; letter-spacing: .22em;
+      text-transform: uppercase; text-decoration: none;
+      background: var(--gold); color: var(--bg);
+      transition: background .25s, border-color .25s;
+    }
+    .btn:hover { background: var(--ink); border-color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <span class="eyebrow">Mundi Opus</span>
+    <h1>404</h1>
+    <p class="sub">This page doesn't exist.</p>
+    <a class="btn" href="/">Go home <span aria-hidden="true">→</span></a>
+  </div>
+</body>
+</html>

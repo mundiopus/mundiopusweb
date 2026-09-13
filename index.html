@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mundi Opus</title>
+  <meta name="description" content="Focus music, study playlists, and resources to help you work on your projects and outgrow yourself. 50k subscribers on YouTube." />
   <link rel="icon" href="img/cropped_circle_image.png" type="image/png" />
   <link rel="apple-touch-icon" href="img/cropped_circle_image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mundi Opus" />
+  <meta property="og:description" content="Focus music, study playlists, and resources to help you work on your projects and outgrow yourself." />
+  <meta property="og:url" content="https://mundiopus.com" />
   <meta property="og:image" content="https://mundiopus.com/img/cropped_circle_image.png" />
   <meta property="og:image:width" content="800" />
   <meta property="og:image:height" content="800" />
-  <meta property="og:title" content="Mundi Opus" />
-  <meta property="og:url" content="https://mundiopus.com" />
   <link rel="alternate" type="application/rss+xml" title="Mundi Opus on YouTube" href="https://www.youtube.com/feeds/videos.xml?channel_id=UCm37o0Tl6g7wEZNv8gUYfew" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -551,35 +554,83 @@
     .footer-links a { color: var(--ink-faint); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: var(--gold); }
 
+    /* ── HAMBURGER (hidden on desktop) ── */
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: .5rem; margin: -.5rem;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--ink); border-radius: 2px;
+      transition: transform .25s, opacity .2s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
     /* ── RESPONSIVE ── */
-    @media (max-width: 680px) {
-      .hero-title { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
-      .hero-mark { width: clamp(70px, 16vw, 100px); }
+    @media (max-width: 700px) {
+      /* Nav */
+      .nav-inner { padding: 0 1.1rem; }
+      .nav-brand-name { font-size: .82rem; letter-spacing: .11em; }
+      .nav-brand-mark { width: 22px; height: 22px; }
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none; position: fixed;
+        top: 60px; left: 0; right: 0;
+        background: rgba(240,233,216,.97);
+        backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        flex-direction: column; align-items: stretch;
+        border-bottom: 1px solid var(--line); z-index: 99;
+        padding: .4rem 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-link {
+        display: block; padding: .85rem 1.4rem;
+        font-size: 1rem; letter-spacing: .18em;
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-links li:last-child .nav-link { border-bottom: none; }
+
+      /* Hero */
+      .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: .9rem; }
+      .hero-mark { width: 62px; }
+      .hero-title { font-size: clamp(1.7rem, 7vw, 2.6rem); }
+
+      /* Touch targets */
+      .btn { min-height: 44px; }
+
+      /* Grids → single column */
       .playlist-row { grid-template-columns: 1fr; }
-      .pl-thumb { width: 120px; }
+      .pl-thumb { width: 110px; }
       .promo-dual { grid-template-columns: 1fr; }
       .store-card { grid-template-columns: 1fr; }
-      .store-main { min-height: 200px; }
+      .store-main { min-height: 220px; }
       .store-right { border-left: none; border-top: 1px solid var(--line); }
       .dual-split { grid-template-columns: 1fr; }
       .dual-col--newsletter { position: static; }
-    }
 
-    @media (max-width: 620px) {
-      .nav-inner { padding: 0 1.1rem; }
-      .nav-links { gap: .9rem; }
-      .nav-link { font-size: .78rem; letter-spacing: .14em; }
-      .nav-brand-name { font-size: .82rem; letter-spacing: .12em; }
-      .nav-brand-mark { width: 22px; height: 22px; }
-      .newsletter-form { flex-direction: column; max-width: 340px; }
+      /* Newsletter form stacked */
+      .newsletter-form { flex-direction: column; max-width: 100%; }
+      .dual-col--newsletter .newsletter-form input[type="email"],
       .newsletter-form input[type="email"] {
         border-right: 1px solid var(--line-strong); border-bottom: none;
-        border-radius: 6px 6px 0 0;
+        border-radius: 6px 6px 0 0; min-height: 44px;
       }
-      .newsletter-form button { border-radius: 0 0 6px 6px; padding: .8rem 1rem; }
-      .promo-headline { font-size: 1.1rem; }
-      .section-header { flex-direction: column; align-items: flex-start; gap: .6rem; }
-      footer { flex-direction: column; align-items: flex-start; }
+      .dual-col--newsletter .newsletter-form button,
+      .newsletter-form button { border-radius: 0 0 6px 6px; min-height: 44px; }
+
+      /* Misc */
+      .section-header { flex-direction: column; align-items: flex-start; gap: .4rem; }
+      .promo-headline { font-size: 1.05rem; }
+      .store-info { padding: 1.1rem 1.2rem 1rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: .5rem; }
+    }
+
+    @media (max-width: 400px) {
+      .hero-title { font-size: clamp(1.5rem, 8vw, 2rem); }
+      .promo-card { padding: 1.2rem; }
+      .section { padding: 1rem 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -589,6 +640,32 @@
       }
       html { scroll-behavior: auto; }
     }
+
+    /* ── STICKY MOBILE CTA ── */
+    .sticky-cta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--ink); color: var(--bg);
+      padding: .85rem 1.25rem;
+      align-items: center; justify-content: space-between; gap: .75rem;
+      border-top: 2px solid var(--gold);
+      transform: translateY(100%);
+      transition: transform .35s cubic-bezier(.22,1,.36,1);
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta-link {
+      font-family: var(--serif); font-size: .72rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--bg); text-decoration: none;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .sticky-cta-link:hover { color: var(--gold-pale); }
+    .sticky-cta-dismiss {
+      background: none; border: none; color: var(--bg); opacity: .45;
+      cursor: pointer; font-size: 1rem; padding: .3rem; flex-shrink: 0;
+      line-height: 1;
+    }
+    .sticky-cta-dismiss:hover { opacity: 1; }
+    @media (max-width: 700px) { .sticky-cta { display: flex; } }
   </style>
 </head>
 <body>
@@ -600,12 +677,15 @@
         <span class="nav-brand-mark" aria-hidden="true"></span>
         <span class="nav-brand-name">Mundi Opus</span>
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a class="nav-link nav-link--active" href="index.html">Home</a></li>
         <li><a class="nav-link" href="#playlists">Playlists</a></li>
         <li><a class="nav-link" href="#store">Store</a></li>
         <li><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -808,6 +888,14 @@
     </div>
   </div>
 
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Subscribe prompt">
+    <a class="sticky-cta-link" href="https://www.youtube.com/@mundiopus" target="_blank" rel="noopener noreferrer">
+      Subscribe on YouTube <span aria-hidden="true">→</span>
+    </a>
+    <button class="sticky-cta-dismiss" id="stickyCtaDismiss" aria-label="Dismiss">✕</button>
+  </div>
+
   <!-- STORE POPUP -->
   <div class="modal-overlay" id="storeOverlay">
     <div class="modal store-modal">
@@ -895,6 +983,34 @@
         sessionStorage.setItem('storePopupShown', '1');
       }, 60000);
     }
+
+    // ── Sticky mobile CTA ──
+    (function() {
+      const cta      = document.getElementById('stickyCta');
+      const dismiss  = document.getElementById('stickyCtaDismiss');
+      if (sessionStorage.getItem('stickyCtaDismissed')) return;
+      window.addEventListener('scroll', () => {
+        cta.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+      dismiss.addEventListener('click', () => {
+        cta.classList.remove('visible');
+        sessionStorage.setItem('stickyCtaDismissed', '1');
+      });
+    })();
+
+    // ── Hamburger nav ──
+    const hamburger = document.getElementById('navHamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }));
   </script>
 </body>
 </html>
